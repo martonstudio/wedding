@@ -401,6 +401,9 @@
           </button>
           <button class="sec-tab" onclick="showSection('stay')">4. Stay</button>
           <button class="sec-tab" onclick="showSection('rsvp')">5. RSVP</button>
+          <button class="sec-tab" onclick="showSection('custom')">
+            6. Custom
+          </button>
           <button class="sec-tab" onclick="showSection('style')">Style</button>
         </div>
 
@@ -624,6 +627,33 @@ We can't wait to celebrate with you!</textarea
             </div>
           </div>
 
+          <!-- CUSTOM SECTIONS -->
+          <div class="panel-section" id="sec-custom">
+            <div
+              class="field-group"
+              style="
+                background: #1a1a1a;
+                padding: 1rem;
+                border: 1px solid var(--gold);
+              "
+            >
+              <p
+                style="
+                  font-size: 0.75rem;
+                  color: var(--gold);
+                  margin-bottom: 0.5rem;
+                "
+              >
+                Custom sections appear on the website for ALL languages. Edit
+                text separately for each language.
+              </p>
+            </div>
+            <div id="custom-sections-repeater"></div>
+            <button class="btn-add" onclick="addCustomSection()">
+              + Add Custom Section
+            </button>
+          </div>
+
           <!-- STYLE -->
           <div class="panel-section" id="sec-style">
             <div class="field-group">
@@ -747,6 +777,7 @@ We can't wait to celebrate with you!</textarea
               desc: "Beautiful traditional house with a modern twist. 5 min walk.",
             },
           ],
+          customSections: [],
         },
         hu: {
           name1: "Sonya",
@@ -782,6 +813,7 @@ We can't wait to celebrate with you!</textarea
               desc: "Autentikus szálláshelyek a faluban.",
             },
           ],
+          customSections: [],
         },
         ru: {
           name1: "Соня",
@@ -816,6 +848,7 @@ We can't wait to celebrate with you!</textarea
               desc: "В пешей доступности.",
             },
           ],
+          customSections: [],
         },
       };
 
@@ -900,6 +933,7 @@ We can't wait to celebrate with you!</textarea
         document.getElementById("formUrl").value = formUrl;
         renderSchedule();
         renderStay();
+        renderCustomSections();
         update();
       }
 
@@ -948,6 +982,58 @@ We can't wait to celebrate with you!</textarea
         update();
       }
 
+      function renderCustomSections() {
+        const cont = document.getElementById("custom-sections-repeater");
+        cont.innerHTML = "";
+        content[currentLang].customSections.forEach((item, i) => {
+          const div = document.createElement("div");
+          div.className = "repeater-item";
+          div.innerHTML = `<div class="repeater-item-header"><span class="repeater-item-title">Custom Section ${i + 1}</span><button class="btn-del" onclick="deleteCustomSection(${i})">✕</button></div>
+      <input class="field-input" value="${item.title || ""}" oninput="updateCustomSection(${i}, 'title', this.value)" placeholder="Section Title">
+      <textarea class="field-input textarea" oninput="updateCustomSection(${i}, 'content', this.value)" placeholder="Section Content (HTML supported)" style="margin-top:0.5rem; min-height: 120px;">${item.content || ""}</textarea>`;
+          cont.appendChild(div);
+        });
+      }
+
+      function addCustomSection() {
+        // Add to ALL languages simultaneously
+        const langs = ["en", "hu", "ru"];
+        langs.forEach((lang) => {
+          if (!content[lang].customSections) {
+            content[lang].customSections = [];
+          }
+          content[lang].customSections.push({ title: "", content: "" });
+        });
+        renderCustomSections();
+        update();
+      }
+
+      function updateCustomSection(index, field, value) {
+        // Update for ALL languages to keep structure in sync
+        const langs = ["en", "hu", "ru"];
+        langs.forEach((lang) => {
+          if (
+            content[lang].customSections &&
+            content[lang].customSections[index]
+          ) {
+            content[lang].customSections[index][field] = value;
+          }
+        });
+        update();
+      }
+
+      function deleteCustomSection(index) {
+        // Delete from ALL languages
+        const langs = ["en", "hu", "ru"];
+        langs.forEach((lang) => {
+          if (content[lang].customSections) {
+            content[lang].customSections.splice(index, 1);
+          }
+        });
+        renderCustomSections();
+        update();
+      }
+
       function syncColor(s, h) {
         document.getElementById(h).value = document.getElementById(s).value;
         updateStyle();
@@ -986,6 +1072,11 @@ We can't wait to celebrate with you!</textarea
       document.querySelector('.hero-names').innerHTML = \`\${d.name1}<span class="hero-ampersand">&amp;</span>\${d.name2}\`;
       document.querySelector('.timeline').innerHTML = d.schedule.map(item => \`<div class="timeline-item"><div class="timeline-time">\${item.time}</div><div class="timeline-desc"><h4>\${item.title}</h4><p>\${item.desc}</p></div></div>\`).join('');
       document.querySelector('.stay-cards').innerHTML = d.stay.map(item => \`<div class="stay-card"><div class="stay-tag">\${item.tag}</div><h3>\${item.name}</h3><p>\${item.desc}</p></div>\`).join('');
+      // Render custom sections
+      const customContainer = document.getElementById('custom-sections-container');
+      if (customContainer && d.customSections) {
+        customContainer.innerHTML = d.customSections.map((section, i) => \`<section id="custom-\${i}" class="custom-section"><div class="section-inner"><h2 class="section-title">\${section.title}</h2><div class="custom-content">\${section.content}</div></div></section>\`).join('');
+      }
       document.getElementById('btn-yes').textContent = d.btnYes;
       document.getElementById('btn-no').textContent = d.btnNo;
       document.querySelectorAll('.lang-nav-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
@@ -1045,6 +1136,7 @@ footer { padding: 5rem; text-align: center; font-size: 0.7rem; opacity: 0.5; tex
 <section id="details"><div class="section-inner"><p class="section-label">Information</p><h2 class="section-title" data-t="dateDisplay"></h2><div class="details-grid"><div class="detail-card"><h3>Venue</h3><p data-t="venueName"></p><p data-t="venueAddress"></p></div><div class="detail-card"><h3>Dress Code</h3><p data-t="dressTitle"></p><p data-t="dressNote"></p></div><div class="detail-card"><h3>Directions</h3><p data-t="gettingThere"></p></div></div></div></section>
 <section id="schedule"><div class="section-inner"><p class="section-label">Events</p><h2 class="section-title">Schedule</h2><div class="timeline"></div></div></section>
 <section id="stay"><div class="section-inner"><p class="section-label">Accommodation</p><h2 class="section-title">Where to Stay</h2><p style="margin-bottom:3.5rem; font-size: 1.1rem;" data-t="stayIntro"></p><div class="stay-cards"></div><p style="margin-top:3.5rem;">Booking Code: <b data-t="bookingCode" style="color:var(--gold)"></b></p></div></section>
+<div id="custom-sections-container"></div>
 <section id="rsvp"><div class="section-inner"><p class="section-label" style="color:white">Join Us</p><h2 class="section-title">RSVP</h2><p style="margin-bottom:3.5rem;" data-t="rsvpIntro"></p>
 <div id="rsvp-form-wrap"><form class="rsvp-form" action="${data.formUrl}" method="POST" onsubmit="handleRSVP(event)">
 <div class="form-group"><label>Full Name</label><input type="text" name="name" id="f-name" required></div>

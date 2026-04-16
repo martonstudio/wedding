@@ -91,12 +91,14 @@
 
       /* ── SECTIONS ── */
       section {
-        min-height: 100vh;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        padding: 4rem 2rem;
+        padding: 3rem 2rem;
         position: relative;
+      }
+      section:not(#hero) {
+        min-height: auto;
       }
       .section-inner {
         max-width: 940px;
@@ -198,14 +200,14 @@
       .section-title {
         font-family: var(--font-display);
         font-size: clamp(2.2rem, 5vw, 3rem);
-        margin-bottom: 3.5rem;
+        margin-bottom: 1.5rem;
         font-weight: 300;
         line-height: 1.2;
       }
       .details-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 3rem;
+        gap: 1.5rem;
       }
       .detail-card h3 {
         font-family: var(--font-display);
@@ -233,7 +235,7 @@
         margin-left: 0.5rem;
       }
       .timeline-item {
-        margin-bottom: 3rem;
+        margin-bottom: 1.5rem;
         position: relative;
       }
       .timeline-item::before {
@@ -270,7 +272,7 @@
       .stay-cards {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2.5rem;
+        gap: 1.5rem;
       }
       .stay-card {
         padding: 2.5rem;
@@ -302,7 +304,7 @@
       #rsvp {
         background: var(--charcoal);
         color: white;
-        padding: 6rem 2rem;
+        padding: 3rem 2rem;
       }
       #rsvp .section-title {
         color: white;
@@ -415,7 +417,7 @@
       }
 
       footer {
-        padding: 5rem;
+        padding: 2rem;
         text-align: center;
         font-size: 0.7rem;
         opacity: 0.5;
@@ -523,14 +525,14 @@
         <p class="section-label">Accommodation</p>
         <h2 class="section-title">Where to Stay</h2>
         <p
-          style="margin-bottom: 3.5rem; font-size: 1.1rem; line-height: 1.8"
+          style="margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.8"
           data-t="stayIntro"
         >
           We recommend staying in local guesthouses in Mad to enjoy the village
           atmosphere.
         </p>
         <div class="stay-cards"></div>
-        <p style="margin-top: 3.5rem">
+        <p style="margin-top: 1.5rem">
           Booking Code:
           <b data-t="bookingCode" style="color: var(--gold)"
             >Sonya & Marton Wedding</b
@@ -543,7 +545,7 @@
       <div class="section-inner reveal">
         <p class="section-label" style="color: white">Join Us</p>
         <h2 class="section-title">RSVP</h2>
-        <p style="margin-bottom: 3.5rem" data-t="rsvpIntro">
+        <p style="margin-bottom: 1.5rem" data-t="rsvpIntro">
           Please let us know if you can join us in Hungary, Sydney, or both!
         </p>
         <div id="rsvp-form-wrap">
