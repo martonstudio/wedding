@@ -1,0 +1,833 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sonya & Marton — Wedding Invitation</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=Tenor+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      :root {
+        --bg: #faf8f4;
+        --charcoal: #2c2c2c;
+        --gold: #b8934a;
+        --white: #fff;
+        --font-display: "Cormorant Garamond", serif;
+        --font-body: "Tenor Sans", sans-serif;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: var(--font-body);
+        background: var(--bg);
+        color: var(--charcoal);
+        overflow-x: hidden;
+      }
+
+      /* ── NAV ── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        padding: 1.2rem;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(10px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        font-size: 0.65rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+      }
+      nav a {
+        color: var(--charcoal);
+        text-decoration: none;
+        transition: 0.2s;
+      }
+      .lang-nav {
+        display: flex;
+        gap: 0.8rem;
+        margin-left: 1.5rem;
+        padding-left: 1.5rem;
+        border-left: 1px solid #ddd;
+      }
+      .lang-nav-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 0.65rem;
+        color: #888;
+        transition: 0.2s;
+      }
+      .lang-nav-btn.active {
+        color: var(--gold);
+        font-weight: 600;
+      }
+
+      /* ── ANIMATIONS ── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .reveal.in-view {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* ── SECTIONS ── */
+      section {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 4rem 2rem;
+        position: relative;
+      }
+      .section-inner {
+        max-width: 940px;
+        margin: 0 auto;
+        width: 100%;
+      }
+
+      /* ── PAGE 1: HERO ── */
+      #hero {
+        background-image: url("/assets/images/hero-wedding.jpg");
+        background-size: cover;
+        background-position: center;
+        color: white;
+        text-align: center;
+      }
+      #hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.3);
+        z-index: 1;
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+      }
+      .hero-eyebrow {
+        font-size: 0.85rem;
+        letter-spacing: 0.4em;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        animation: fadeUp 1s ease both;
+      }
+      .hero-names {
+        font-family: var(--font-display);
+        font-size: clamp(3.5rem, 12vw, 8.5rem);
+        line-height: 0.9;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        font-weight: 600;
+        animation: fadeUp 1s 0.2s ease both;
+      }
+      .hero-ampersand {
+        display: block;
+        font-size: 0.4em;
+        margin: 0.5rem 0;
+        font-weight: 300;
+        font-style: italic;
+      }
+      .hero-location {
+        font-size: 0.85rem;
+        letter-spacing: 0.25em;
+        opacity: 0.9;
+        text-transform: uppercase;
+        margin-bottom: 3.5rem;
+        animation: fadeUp 1s 0.4s ease both;
+      }
+      .hero-cta {
+        display: inline-block;
+        padding: 1.1rem 3.5rem;
+        border: 1.5px solid white;
+        color: white;
+        text-decoration: none;
+        font-size: 0.75rem;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        transition: 0.3s;
+        font-weight: 600;
+        animation: fadeUp 1s 0.6s ease both;
+      }
+      .hero-cta:hover {
+        background: white;
+        color: black;
+      }
+
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ── PAGE 2: DATE & VENUE ── */
+      #details {
+        background: var(--bg);
+      }
+      .section-label {
+        font-size: 0.7rem;
+        letter-spacing: 0.35em;
+        color: var(--gold);
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        font-weight: 600;
+      }
+      .section-title {
+        font-family: var(--font-display);
+        font-size: clamp(2.2rem, 5vw, 3rem);
+        margin-bottom: 3.5rem;
+        font-weight: 300;
+        line-height: 1.2;
+      }
+      .details-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 3rem;
+      }
+      .detail-card h3 {
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        margin-bottom: 0.8rem;
+        font-weight: 600;
+        border-bottom: 1px solid var(--gold);
+        padding-bottom: 0.5rem;
+        display: inline-block;
+      }
+      .detail-card p {
+        line-height: 1.7;
+        color: var(--charcoal);
+        opacity: 0.8;
+      }
+
+      /* ── PAGE 3: SCHEDULE ── */
+      #schedule {
+        background: #fff;
+      }
+      .timeline {
+        position: relative;
+        padding-left: 2.5rem;
+        border-left: 1px solid #ddd;
+        margin-left: 0.5rem;
+      }
+      .timeline-item {
+        margin-bottom: 3rem;
+        position: relative;
+      }
+      .timeline-item::before {
+        content: "";
+        position: absolute;
+        left: -2.85rem;
+        top: 0.5rem;
+        width: 11px;
+        height: 11px;
+        background: var(--gold);
+        border-radius: 50%;
+      }
+      .timeline-time {
+        font-weight: 600;
+        color: var(--gold);
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
+        letter-spacing: 0.05em;
+      }
+      .timeline-desc h4 {
+        font-size: 1.1rem;
+        margin-bottom: 0.5rem;
+        font-weight: 600;
+      }
+      .timeline-desc p {
+        line-height: 1.6;
+        opacity: 0.7;
+      }
+
+      /* ── PAGE 4: ACCOMMODATION ── */
+      #stay {
+        background: #faf8f4;
+      }
+      .stay-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2.5rem;
+      }
+      .stay-card {
+        padding: 2.5rem;
+        border: 1px solid #ddd;
+        background: white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
+      }
+      .stay-tag {
+        font-size: 0.7rem;
+        color: var(--gold);
+        text-transform: uppercase;
+        margin-bottom: 1rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+      }
+      .stay-card h3 {
+        font-family: var(--font-display);
+        font-size: 1.6rem;
+        margin-bottom: 1rem;
+        font-weight: 600;
+      }
+      .stay-card p {
+        line-height: 1.6;
+        opacity: 0.8;
+        margin-bottom: 1.5rem;
+      }
+
+      /* ── PAGE 5: RSVP ── */
+      #rsvp {
+        background: var(--charcoal);
+        color: white;
+        padding: 6rem 2rem;
+      }
+      #rsvp .section-title {
+        color: white;
+      }
+      .rsvp-form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        max-width: 800px;
+        margin: 0 auto;
+      }
+      .form-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .form-group.full {
+        grid-column: 1 / -1;
+      }
+      .form-group label {
+        font-size: 0.7rem;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        opacity: 0.8;
+        font-weight: 600;
+      }
+      .form-group input,
+      .form-group textarea,
+      .form-group select {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #555;
+        padding: 0.8rem 0;
+        color: white;
+        outline: none;
+        font-family: var(--font-body);
+        font-size: 1rem;
+        transition: 0.3s;
+      }
+      .form-group input:focus {
+        border-bottom-color: var(--gold);
+      }
+      .event-choices {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        margin-top: 0.5rem;
+      }
+      .event-opt {
+        border: 1px solid #444;
+        padding: 1.2rem;
+        cursor: pointer;
+        transition: 0.2s;
+      }
+      .event-opt.active {
+        background: var(--gold);
+        border-color: var(--gold);
+        color: white;
+      }
+      .event-opt input {
+        display: none;
+      }
+      .attend-toggle {
+        display: flex;
+        gap: 1rem;
+      }
+      .attend-btn {
+        flex: 1;
+        padding: 1.1rem;
+        border: 1px solid #555;
+        background: transparent;
+        color: white;
+        cursor: pointer;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        transition: 0.2s;
+        font-weight: 600;
+      }
+      .attend-btn.active-yes {
+        background: var(--gold);
+        border-color: var(--gold);
+      }
+      .attend-btn.active-no {
+        background: #444;
+        border-color: #444;
+      }
+      .rsvp-submit {
+        grid-column: 1 / -1;
+        background: var(--gold);
+        color: white;
+        border: none;
+        padding: 1.3rem;
+        cursor: pointer;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        font-weight: 600;
+        margin-top: 1rem;
+        transition: 0.2s;
+      }
+      .rsvp-submit:hover {
+        opacity: 0.9;
+      }
+      .rsvp-thankyou {
+        display: none;
+        text-align: center;
+        padding: 4rem 0;
+      }
+      .rsvp-thankyou.visible {
+        display: block;
+      }
+
+      footer {
+        padding: 5rem;
+        text-align: center;
+        font-size: 0.7rem;
+        opacity: 0.5;
+        text-transform: uppercase;
+        letter-spacing: 0.15em;
+        background: #1a1a1a;
+        color: white;
+      }
+
+      @media (max-width: 768px) {
+        nav {
+          gap: 1rem;
+          padding: 1rem 0.5rem;
+        }
+        .rsvp-form {
+          grid-template-columns: 1fr;
+        }
+        .event-choices {
+          grid-template-columns: 1fr;
+        }
+        section {
+          min-height: auto;
+          padding: 5rem 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="links">
+        <a href="#details">Details</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#stay">Stay</a>
+        <a href="#rsvp">RSVP</a>
+      </div>
+      <div class="lang-nav">
+        <button
+          class="lang-nav-btn active"
+          data-lang="en"
+          onclick="setLanguage('en')"
+        >
+          EN
+        </button>
+        <button class="lang-nav-btn" data-lang="hu" onclick="setLanguage('hu')">
+          HU
+        </button>
+        <button class="lang-nav-btn" data-lang="ru" onclick="setLanguage('ru')">
+          RU
+        </button>
+      </div>
+    </nav>
+
+    <section id="hero">
+      <div class="hero-content">
+        <p class="hero-eyebrow" data-t="eyebrow">WE ARE GETTING MARRIED</p>
+        <h1 class="hero-names">
+          Sonya<span class="hero-ampersand">&amp;</span>Marton
+        </h1>
+        <p class="hero-location" data-t="heroLocation">
+          Mad · Tokaj Wine Region, Hungary
+        </p>
+        <a href="#rsvp" class="hero-cta" data-t="btnNavRSVP">Kindly RSVP</a>
+      </div>
+    </section>
+
+    <section id="details">
+      <div class="section-inner reveal">
+        <p class="section-label">Information</p>
+        <h2 class="section-title" data-t="dateDisplay">
+          Saturday, 10th of October, 2026
+        </h2>
+        <div class="details-grid">
+          <div class="detail-card">
+            <h3>Venue</h3>
+            <p data-t="venueName">Mad, Hungary</p>
+            <p data-t="venueAddress">Tokaj Wine Region<br />Hungary</p>
+          </div>
+          <div class="detail-card">
+            <h3>Dress Code</h3>
+            <p data-t="dressTitle">Cocktail Attire</p>
+            <p data-t="dressNote">
+              Semi-formal. Comfort is key for village walks!
+            </p>
+          </div>
+          <div class="detail-card">
+            <h3>Directions</h3>
+            <p data-t="gettingThere">
+              Flights to Budapest, then a 2.5hr drive or train to Mad.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="schedule">
+      <div class="section-inner reveal">
+        <p class="section-label">Events</p>
+        <h2 class="section-title">Schedule</h2>
+        <div class="timeline"></div>
+      </div>
+    </section>
+
+    <section id="stay">
+      <div class="section-inner reveal">
+        <p class="section-label">Accommodation</p>
+        <h2 class="section-title">Where to Stay</h2>
+        <p
+          style="margin-bottom: 3.5rem; font-size: 1.1rem; line-height: 1.8"
+          data-t="stayIntro"
+        >
+          We recommend staying in local guesthouses in Mad to enjoy the village
+          atmosphere.
+        </p>
+        <div class="stay-cards"></div>
+        <p style="margin-top: 3.5rem">
+          Booking Code:
+          <b data-t="bookingCode" style="color: var(--gold)"
+            >Sonya & Marton Wedding</b
+          >
+        </p>
+      </div>
+    </section>
+
+    <section id="rsvp">
+      <div class="section-inner reveal">
+        <p class="section-label" style="color: white">Join Us</p>
+        <h2 class="section-title">RSVP</h2>
+        <p style="margin-bottom: 3.5rem" data-t="rsvpIntro">
+          Please let us know if you can join us in Hungary, Sydney, or both!
+        </p>
+        <div id="rsvp-form-wrap">
+          <form
+            class="rsvp-form"
+            action="https://formspree.io/f/xlgorpaw"
+            method="POST"
+            onsubmit="handleRSVP(event)"
+          >
+            <div class="form-group">
+              <label>Full Name</label
+              ><input type="text" name="name" id="f-name" required />
+            </div>
+            <div class="form-group">
+              <label>Email</label><input type="email" name="email" required />
+            </div>
+            <div class="form-group full">
+              <label>Events</label>
+              <div class="event-choices">
+                <div class="event-opt" onclick="toggleEvent(this)">
+                  <input type="checkbox" name="events" value="Hungary" />
+                  <h4>Hungary</h4>
+                  <p>10 Oct 2026</p>
+                </div>
+                <div class="event-opt" onclick="toggleEvent(this)">
+                  <input type="checkbox" name="events" value="Sydney" />
+                  <h4>Sydney</h4>
+                  <p>20 Nov 2026</p>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Total Guests</label
+              ><select name="guests" style="background: #333; color: white">
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Attending?</label>
+              <div class="attend-toggle">
+                <button
+                  type="button"
+                  class="attend-btn"
+                  id="btn-yes"
+                  onclick="setAttending('yes')"
+                >
+                  Yes</button
+                ><button
+                  type="button"
+                  class="attend-btn"
+                  id="btn-no"
+                  onclick="setAttending('no')"
+                >
+                  No
+                </button>
+              </div>
+              <input type="hidden" name="attending" id="f-attending" required />
+            </div>
+            <button type="submit" class="rsvp-submit">Send RSVP</button>
+          </form>
+        </div>
+        <div class="rsvp-thankyou" id="rsvp-thankyou">
+          <h3>Thank You!</h3>
+          <p id="ty-body"></p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>
+        <span data-t="name1">Sonya</span> &amp;
+        <span data-t="name2">Marton</span> —
+        <span data-t="dateShort">10 Oct 2026</span>
+      </p>
+    </footer>
+
+    <script>
+      const content = {
+        en: {
+          name1: "Sonya",
+          name2: "Marton",
+          eyebrow: "WE ARE GETTING MARRIED",
+          heroLocation: "Mad · Tokaj Wine Region, Hungary",
+          dateDisplay: "Saturday, 10th of October, 2026",
+          dateShort: "10 Oct 2026",
+          venueName: "Mad, Hungary",
+          venueAddress: "Tokaj Wine Region\nHungary",
+          dressTitle: "Cocktail Attire",
+          dressNote: "Semi-formal. Comfort is key for village walks!",
+          gettingThere:
+            "Flights to Budapest, then a 2.5hr drive or train to Mad.",
+          stayIntro:
+            "We recommend staying in local guesthouses in Mad to enjoy the village atmosphere.",
+          bookingCode: "Sonya & Marton Wedding",
+          rsvpIntro:
+            "Please let us know if you can join us in Hungary, Sydney, or both!",
+          btnYes: "Joyfully accepts",
+          btnNo: "Regretfully declines",
+          tyMsg: "We can't wait to celebrate with you!",
+          btnNavRSVP: "Kindly RSVP",
+          heroImage: "00_IMAGE/WhatsApp Image 2026-03-20 at 15.31.05.jpeg",
+          schedule: [
+            {
+              time: "Thursday",
+              title: "Arrival & Welcome",
+              desc: "Settle into the village, traditional dinner",
+            },
+            {
+              time: "Friday",
+              title: "Wine & Hike",
+              desc: "Hiking in the vineyards followed by wine tasting",
+            },
+            {
+              time: "Saturday",
+              title: "Wedding Day",
+              desc: "Ceremony and celebration in the heart of Mad",
+            },
+          ],
+          stay: [
+            {
+              name: "Mad Garden Guesthouse",
+              tag: "Recommended",
+              desc: "Beautiful traditional house with a modern twist. 5 min walk.",
+            },
+          ],
+        },
+        hu: {
+          name1: "Sonya",
+          name2: "Márton",
+          eyebrow: "ÖSSZEHÁZASODUNK",
+          heroLocation: "Mád · Tokaji Borvidék",
+          dateDisplay: "2026. Október 10. Szombat",
+          dateShort: "2026. okt. 10.",
+          venueName: "Mád, Magyarország",
+          venueAddress: "Tokaji Borvidék\nMád",
+          dressTitle: "Koktélruha",
+          dressNote:
+            "Félhivatalos öltözet. A kényelem fontos a falusi sétákhoz!",
+          gettingThere: "Autóval vagy vonattal Budapestre, onnan 2,5 óra Mád.",
+          stayIntro:
+            "Javasoljuk, hogy szálljanak meg a mádi vendégházakban a falu hangulata miatt.",
+          bookingCode: "Sonya & Márton Esküvő",
+          rsvpIntro:
+            "Kérjük, jelezze, ha részt tud venni a magyarországi, a sydney-i eseményen, vagy mindkettőn!",
+          btnYes: "Örömmel elfogadom",
+          btnNo: "Sajnos nem tudok jönni",
+          tyMsg: "Alig várjuk az ünneplést!",
+          btnNavRSVP: "Válasz küldése",
+          heroImage: "00_IMAGE/WhatsApp Image 2026-03-20 at 15.31.05.jpeg",
+          schedule: [
+            { time: "Csütörtök", title: "Érkezés", desc: "Üdvözlő vacsora" },
+            {
+              time: "Péntek",
+              title: "Bor és Túra",
+              desc: "Túra a szőlőben és borkóstoló",
+            },
+            { time: "Szombat", title: "Esküvő", desc: "A nagy nap" },
+          ],
+          stay: [
+            {
+              name: "Mádi Vendégházak",
+              tag: "Ajánlott",
+              desc: "Különböző autentikus szálláshelyek a faluban.",
+            },
+          ],
+        },
+        ru: {
+          name1: "Соня",
+          name2: "Мартон",
+          eyebrow: "МЫ ЖЕНИМСЯ",
+          heroLocation: "Мад · Токайский регион",
+          dateDisplay: "Суббота, 10 октября 2026 г.",
+          dateShort: "10 окт 2026",
+          venueName: "Мад, Венгрия",
+          venueAddress: "Токайский винный регион\nВенгрия",
+          dressTitle: "Коктейльный дресс-код",
+          dressNote: "Полуформально. Комфорт важен для прогулок!",
+          gettingThere: "Перелет в Будапешт, затем 2,5 часа до Мада.",
+          stayIntro:
+            "Мы рекомендуем остановиться в местных гостевых домах в Маде.",
+          bookingCode: "Свадьба Сони и Мартона",
+          rsvpIntro:
+            "Пожалуйста, дайте нам знать, сможете ли вы присоединиться к нам в Венгрии, Сиднее или в обоих местах!",
+          btnYes: "С радостью принимаю",
+          btnNo: "К сожалению, не смогу",
+          tyMsg: "Мы с нетерпением ждем встречи!",
+          btnNavRSVP: "Ответить на приглашение",
+          heroImage: "00_IMAGE/WhatsApp Image 2026-03-20 at 15.31.05.jpeg",
+          schedule: [
+            { time: "Четверг", title: "Приезд", desc: "Ужин" },
+            { time: "Суббота", title: "Свадьба", desc: "Основной день" },
+          ],
+          stay: [
+            {
+              name: "Гостевой дом",
+              tag: "В деревне",
+              desc: "В пешей доступности.",
+            },
+          ],
+        },
+      };
+
+      let currentLang = "en";
+
+      function setLanguage(lang) {
+        currentLang = lang;
+        const d = content[lang];
+        document.querySelectorAll("[data-t]").forEach((el) => {
+          const key = el.dataset.t;
+          if (!d[key]) return;
+          if (el.tagName === "INPUT" || el.tagName === "TEXTAREA")
+            el.value = d[key];
+          else if (key === "venueAddress")
+            el.innerHTML = d[key].replace(/\n/g, "<br>");
+          else el.textContent = d[key];
+        });
+        document.querySelector(".hero-names").innerHTML =
+          `${d.name1}<span class="hero-ampersand">&amp;</span>${d.name2}`;
+        document.querySelector(".timeline").innerHTML = d.schedule
+          .map(
+            (item) =>
+              `<div class="timeline-item"><div class="timeline-time">${item.time}</div><div class="timeline-desc"><h4>${item.title}</h4><p>${item.desc}</p></div></div>`,
+          )
+          .join("");
+        document.querySelector(".stay-cards").innerHTML = d.stay
+          .map(
+            (item) =>
+              `<div class="stay-card"><div class="stay-tag">${item.tag}</div><h3>${item.name}</h3><p>${item.desc}</p></div>`,
+          )
+          .join("");
+        document.getElementById("btn-yes").textContent = d.btnYes;
+        document.getElementById("btn-no").textContent = d.btnNo;
+        document
+          .querySelectorAll(".lang-nav-btn")
+          .forEach((b) =>
+            b.classList.toggle("active", b.dataset.lang === lang),
+          );
+        document.title = `${d.name1} & ${d.name2}`;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("in-view");
+          });
+        },
+        { threshold: 0.1 },
+      );
+      document
+        .querySelectorAll(".reveal")
+        .forEach((el) => observer.observe(el));
+
+      function toggleEvent(el) {
+        el.classList.toggle("active");
+        const cb = el.querySelector("input");
+        cb.checked = !cb.checked;
+      }
+      function setAttending(v) {
+        document.getElementById("f-attending").value = v;
+        document.getElementById("btn-yes").className =
+          "attend-btn" + (v === "yes" ? " active-yes" : "");
+        document.getElementById("btn-no").className =
+          "attend-btn" + (v === "no" ? " active-no" : "");
+      }
+      function handleRSVP(e) {
+        const name = document.getElementById("f-name").value;
+        const att = document.getElementById("f-attending").value.toUpperCase();
+        document.getElementById("f-subject").value =
+          `[WEDDING] [${name}] [${att}]`;
+        if (
+          e.target.action === window.location.href ||
+          e.target.action === "#"
+        ) {
+          e.preventDefault();
+          document.getElementById("rsvp-form-wrap").style.display = "none";
+          document.getElementById("rsvp-thankyou").classList.add("visible");
+          document.getElementById("ty-body").textContent =
+            content[currentLang].tyMsg;
+        }
+      }
+      window.onload = () => setLanguage("en");
+    </script>
+  </body>
+</html>
