@@ -610,6 +610,7 @@
               <input type="hidden" name="attending" id="f-attending" required />
             </div>
             <input type="hidden" name="_subject" id="f-subject" value="Wedding RSVP" />
+            <input type="hidden" name="_language" id="f-language" value="en" />
             <button type="submit" class="rsvp-submit">Send RSVP</button>
           </form>
         </div>
@@ -701,29 +702,15 @@
         const form = e.target;
         const name = document.getElementById("f-name").value;
         const att = document.getElementById("f-attending").value.toUpperCase();
-        document.getElementById("f-subject").value =
-          `[WEDDING] [${name}] [${att}]`;
-        const submitBtn = form.querySelector(".rsvp-submit");
-        submitBtn.disabled = true;
+        document.getElementById("f-subject").value = `[WEDDING] [${name}] [${att}]`;
+        document.getElementById("f-language").value = currentLang;
+        form.querySelector(".rsvp-submit").disabled = true;
         try {
-          const res = await fetch(form.action, {
-            method: "POST",
-            body: new FormData(form),
-            headers: { Accept: "application/json" },
-          });
-          if (res.ok) {
-            document.getElementById("rsvp-form-wrap").style.display = "none";
-            document.getElementById("rsvp-thankyou").classList.add("visible");
-            document.getElementById("ty-body").textContent =
-              content[currentLang].tyMsg;
-          } else {
-            submitBtn.disabled = false;
-            submitBtn.textContent = "Try again";
-          }
-        } catch (_) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = "Try again";
-        }
+          await fetch(form.action, { method: "POST", body: new FormData(form), mode: "no-cors" });
+        } catch (_) {}
+        document.getElementById("rsvp-form-wrap").style.display = "none";
+        document.getElementById("rsvp-thankyou").classList.add("visible");
+        document.getElementById("ty-body").textContent = content[currentLang].tyMsg;
       }
       window.onload = () => {
         fetch("./content.json")
