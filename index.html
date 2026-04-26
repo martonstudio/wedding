@@ -553,7 +553,7 @@
         <div id="rsvp-form-wrap">
           <form
             class="rsvp-form"
-            action="https://formspree.io/f/xlgorpaw"
+            id="rsvp-form"
             method="POST"
             onsubmit="handleRSVP(event)"
           >
@@ -609,6 +609,7 @@
               </div>
               <input type="hidden" name="attending" id="f-attending" required />
             </div>
+            <input type="hidden" name="_subject" id="f-subject" value="Wedding RSVP" />
             <button type="submit" class="rsvp-submit">Send RSVP</button>
           </form>
         </div>
@@ -716,6 +717,9 @@
           .then((r) => r.json())
           .then((data) => {
             content = data;
+            if (data.formUrl) {
+              document.getElementById("rsvp-form").action = data.formUrl;
+            }
             setLanguage("en");
           });
       };

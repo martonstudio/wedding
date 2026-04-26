@@ -1388,7 +1388,7 @@ function handleRSVP(e){
           if (!getRes.ok) throw new Error(`GET ${getRes.status}`);
 
           const current = await getRes.json();
-          const newJSON = JSON.stringify(content, null, 2);
+          const newJSON = JSON.stringify({ formUrl, ...content }, null, 2);
 
           const putRes = await ghFetch("PUT", GH_PATH, {
             message: "Update content via web editor",
@@ -1459,7 +1459,9 @@ function handleRSVP(e){
               globalStyle = d.style;
               formUrl = d.formUrl || "";
             } else {
-              content = fetched;
+              const { formUrl: fetchedUrl, ...langs } = fetched;
+              content = langs;
+              if (fetchedUrl) formUrl = fetchedUrl;
             }
             loadContent();
           });
