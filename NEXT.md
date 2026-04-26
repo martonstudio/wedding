@@ -16,8 +16,9 @@
 - Temp "✦ Edit" link in nav (top left of invite site) — remove before launch
 
 ## Needs verification
-- RSVP sheet: was broken (getActiveSpreadsheet returned null), fixed with openById,
-  redeployed — needs a test submission to confirm rows appear
+- RSVP sheet: STILL BROKEN — openById fix redeployed but rows still not appearing.
+  Needs proper debug next session. Check Apps Script Executions log for the error.
+  Email notifications work fine so the script is running — sheet write is failing silently.
 - Sonya email (sobutorina@gmail.com): wasn't arriving — may be spam. Check after sheet fix.
 - Full publish round-trip: editor → Publish button → GitHub API → live site — unverified end-to-end
 - Site visual review on mobile and desktop (content, language switching, hero image)
