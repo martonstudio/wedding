@@ -359,6 +359,32 @@
       .panel-section.active {
         display: block;
       }
+
+      @media (max-width: 768px) {
+        .topbar-logo { display: none; }
+        .btn-export { display: none; }
+        .topbar { gap: 0.5rem; padding: 0.6rem 0.75rem; }
+
+        .workspace { flex-direction: column; }
+
+        .sidebar {
+          width: 100% !important;
+          flex: 1;
+        }
+        .sidebar.collapsed { width: 100% !important; }
+
+        .preview-wrap { display: none; }
+
+        .workspace.preview-visible .sidebar { display: none; }
+        .workspace.preview-visible .preview-wrap {
+          display: flex;
+          width: 100%;
+          flex: 1;
+        }
+
+        .preview-frame-wrap { padding: 0; }
+        iframe#preview, iframe#preview.mobile { max-width: 100%; }
+      }
     </style>
   </head>
   <body>
@@ -731,6 +757,19 @@ We can't wait to celebrate with you!</textarea
       let formUrl = "https://formspree.io/f/xlgorpaw";
 
       let content = {};
+
+      function setPanel(showEdit) {
+        const sidebar = document.getElementById("sidebar");
+        const workspace = document.querySelector(".workspace");
+        document.querySelectorAll(".preview-toggle button").forEach((b, i) => {
+          b.classList.toggle("active", showEdit ? i === 0 : i === 1);
+        });
+        if (window.innerWidth <= 768) {
+          workspace.classList.toggle("preview-visible", !showEdit);
+        } else {
+          sidebar.classList.toggle("collapsed", !showEdit);
+        }
+      }
 
       function showSection(id) {
         document
