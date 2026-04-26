@@ -3,7 +3,7 @@ import { resolve } from "path";
 
 export default defineConfig({
   root: ".",
-  base: "/",
+  base: "/wedding/",
   publicDir: "public",
   build: {
     outDir: "dist",
@@ -11,7 +11,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
-        invite: resolve(__dirname, "invite.html"),
         editor: resolve(__dirname, "editor.html"),
       },
     },

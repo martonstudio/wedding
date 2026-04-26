@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex,nofollow" />
     <title>Sonya & Marton — Wedding Invitation</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=Tenor+Sans&display=swap"
@@ -626,131 +627,7 @@
     </footer>
 
     <script>
-      const content = {
-        en: {
-          name1: "Sonya",
-          name2: "Marton",
-          eyebrow: "WE ARE GETTING MARRIED",
-          heroLocation: "Mad · Tokaj Wine Region, Hungary",
-          dateDisplay: "Saturday, 10th of October, 2026",
-          dateShort: "10 Oct 2026",
-          venueName: "Mad, Hungary",
-          venueAddress: "Tokaj Wine Region\nHungary",
-          dressTitle: "Cocktail Attire",
-          dressNote: "Semi-formal. Comfort is key for village walks!",
-          gettingThere:
-            "Flights to Budapest, then a 2.5hr drive or train to Mad.",
-          stayIntro:
-            "We recommend staying in local guesthouses in Mad to enjoy the village atmosphere.",
-          bookingCode: "Sonya & Marton Wedding",
-          rsvpIntro:
-            "Please let us know if you can join us in Hungary, Sydney, or both!",
-          btnYes: "Joyfully accepts",
-          btnNo: "Regretfully declines",
-          tyMsg: "We can't wait to celebrate with you!",
-          btnNavRSVP: "Kindly RSVP",
-          heroImage: "00_IMAGE/WhatsApp Image 2026-03-20 at 15.31.05.jpeg",
-          schedule: [
-            {
-              time: "Thursday",
-              title: "Arrival & Welcome",
-              desc: "Settle into the village, traditional dinner",
-            },
-            {
-              time: "Friday",
-              title: "Wine & Hike",
-              desc: "Hiking in the vineyards followed by wine tasting",
-            },
-            {
-              time: "Saturday",
-              title: "Wedding Day",
-              desc: "Ceremony and celebration in the heart of Mad",
-            },
-          ],
-          stay: [
-            {
-              name: "Mad Garden Guesthouse",
-              tag: "Recommended",
-              desc: "Beautiful traditional house with a modern twist. 5 min walk.",
-            },
-          ],
-        },
-        hu: {
-          name1: "Sonya",
-          name2: "Márton",
-          eyebrow: "ÖSSZEHÁZASODUNK",
-          heroLocation: "Mád · Tokaji Borvidék",
-          dateDisplay: "2026. Október 10. Szombat",
-          dateShort: "2026. okt. 10.",
-          venueName: "Mád, Magyarország",
-          venueAddress: "Tokaji Borvidék\nMád",
-          dressTitle: "Koktélruha",
-          dressNote:
-            "Félhivatalos öltözet. A kényelem fontos a falusi sétákhoz!",
-          gettingThere: "Autóval vagy vonattal Budapestre, onnan 2,5 óra Mád.",
-          stayIntro:
-            "Javasoljuk, hogy szálljanak meg a mádi vendégházakban a falu hangulata miatt.",
-          bookingCode: "Sonya & Márton Esküvő",
-          rsvpIntro:
-            "Kérjük, jelezze, ha részt tud venni a magyarországi, a sydney-i eseményen, vagy mindkettőn!",
-          btnYes: "Örömmel elfogadom",
-          btnNo: "Sajnos nem tudok jönni",
-          tyMsg: "Alig várjuk az ünneplést!",
-          btnNavRSVP: "Válasz küldése",
-          heroImage: "00_IMAGE/WhatsApp Image 2026-03-20 at 15.31.05.jpeg",
-          schedule: [
-            { time: "Csütörtök", title: "Érkezés", desc: "Üdvözlő vacsora" },
-            {
-              time: "Péntek",
-              title: "Bor és Túra",
-              desc: "Túra a szőlőben és borkóstoló",
-            },
-            { time: "Szombat", title: "Esküvő", desc: "A nagy nap" },
-          ],
-          stay: [
-            {
-              name: "Mádi Vendégházak",
-              tag: "Ajánlott",
-              desc: "Különböző autentikus szálláshelyek a faluban.",
-            },
-          ],
-        },
-        ru: {
-          name1: "Соня",
-          name2: "Мартон",
-          eyebrow: "МЫ ЖЕНИМСЯ",
-          heroLocation: "Мад · Токайский регион",
-          dateDisplay: "Суббота, 10 октября 2026 г.",
-          dateShort: "10 окт 2026",
-          venueName: "Мад, Венгрия",
-          venueAddress: "Токайский винный регион\nВенгрия",
-          dressTitle: "Коктейльный дресс-код",
-          dressNote: "Полуформально. Комфорт важен для прогулок!",
-          gettingThere: "Перелет в Будапешт, затем 2,5 часа до Мада.",
-          stayIntro:
-            "Мы рекомендуем остановиться в местных гостевых домах в Маде.",
-          bookingCode: "Свадьба Сони и Мартона",
-          rsvpIntro:
-            "Пожалуйста, дайте нам знать, сможете ли вы присоединиться к нам в Венгрии, Сиднее или в обоих местах!",
-          btnYes: "С радостью принимаю",
-          btnNo: "К сожалению, не смогу",
-          tyMsg: "Мы с нетерпением ждем встречи!",
-          btnNavRSVP: "Ответить на приглашение",
-          heroImage: "00_IMAGE/WhatsApp Image 2026-03-20 at 15.31.05.jpeg",
-          schedule: [
-            { time: "Четверг", title: "Приезд", desc: "Ужин" },
-            { time: "Суббота", title: "Свадьба", desc: "Основной день" },
-          ],
-          stay: [
-            {
-              name: "Гостевой дом",
-              tag: "В деревне",
-              desc: "В пешей доступности.",
-            },
-          ],
-        },
-      };
-
+      let content = {};
       let currentLang = "en";
 
       function setLanguage(lang) {
@@ -829,7 +706,14 @@
             content[currentLang].tyMsg;
         }
       }
-      window.onload = () => setLanguage("en");
+      window.onload = () => {
+        fetch("./content.json")
+          .then((r) => r.json())
+          .then((data) => {
+            content = data;
+            setLanguage("en");
+          });
+      };
     </script>
   </body>
 </html>

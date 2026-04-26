@@ -7,7 +7,6 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "deploy": "npm run build && gh-pages -d dist",
     "deploy:netlify": "npx netlify deploy --prod --dir=dist",
     "lint": "eslint src --ext .js,.ts",
     "format": "prettier --write \"src/**/*.{js,css,html,json}\""
@@ -22,8 +21,7 @@
   "author": "Sonya & Marton",
   "license": "MIT",
   "devDependencies": {
-    "vite": "^5.0.0",
-    "gh-pages": "^6.1.0"
+    "vite": "^5.0.0"
   },
   "dependencies": {},
   "engines": {
