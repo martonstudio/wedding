@@ -360,6 +360,106 @@
         display: block;
       }
 
+      /* ── PUBLISH BUTTON ── */
+      .btn-publish {
+        padding: 0.45rem 1.2rem;
+        background: var(--gold);
+        border: none;
+        color: #fff;
+        font-family: "Tenor Sans", sans-serif;
+        font-size: 0.68rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: background 0.15s;
+      }
+      .btn-publish:hover { background: var(--gold-lt); }
+      .btn-publish:disabled { opacity: 0.5; cursor: default; }
+
+      /* ── STATUS BAR ── */
+      .pub-status {
+        display: none;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.45rem 1.5rem;
+        background: #0a0a0a;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.68rem;
+        letter-spacing: 0.08em;
+        color: var(--mid);
+        flex-shrink: 0;
+      }
+      .pub-status.visible { display: flex; }
+      .pub-status-dot {
+        width: 7px; height: 7px; border-radius: 50%;
+        background: var(--mid); flex-shrink: 0;
+      }
+      .pub-status.saving .pub-status-dot   { background: #f0a500; }
+      .pub-status.deploying .pub-status-dot { background: #f0a500; animation: pulse 1s infinite; }
+      .pub-status.live .pub-status-dot      { background: var(--green); }
+      .pub-status.error .pub-status-dot     { background: var(--red); }
+      @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+      /* ── PAT MODAL ── */
+      .pat-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.85);
+        z-index: 200;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+      }
+      .pat-overlay.visible { display: flex; }
+      .pat-modal {
+        background: var(--panel);
+        border: 1px solid var(--border2);
+        padding: 2rem;
+        width: 100%;
+        max-width: 400px;
+      }
+      .pat-modal h3 {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 1.3rem;
+        font-weight: 300;
+        color: var(--gold);
+        margin-bottom: 0.5rem;
+      }
+      .pat-modal p {
+        font-size: 0.75rem;
+        color: var(--mid);
+        line-height: 1.6;
+        margin-bottom: 1.25rem;
+      }
+      .pat-modal input {
+        width: 100%;
+        background: var(--input-bg);
+        border: 1px solid var(--border2);
+        padding: 0.7rem;
+        color: var(--text);
+        font-family: monospace;
+        font-size: 0.75rem;
+        outline: none;
+        margin-bottom: 0.75rem;
+      }
+      .pat-modal input:focus { border-color: var(--gold); }
+      .pat-error {
+        font-size: 0.7rem;
+        color: var(--red);
+        margin-bottom: 0.75rem;
+        display: none;
+      }
+      .pat-error.visible { display: block; }
+      .pat-actions { display: flex; gap: 0.75rem; align-items: center; }
+      .pat-link {
+        font-size: 0.65rem;
+        color: var(--mid);
+        text-decoration: none;
+        margin-left: auto;
+      }
+      .pat-link:hover { color: var(--gold); }
+
       @media (max-width: 768px) {
         .topbar-logo { display: none; }
         .btn-export { display: none; }
@@ -394,8 +494,28 @@
         <button class="active" onclick="setPanel(true)">✦ Edit</button>
         <button onclick="setPanel(false)">⤢ Preview</button>
       </div>
+      <button class="btn-publish" id="btn-publish" onclick="publishSite()">↑ Publish</button>
       <button class="btn-save" onclick="saveLocal()">Save Draft</button>
       <button class="btn-export" onclick="exportSite()">↓ Download Site</button>
+    </div>
+
+    <div class="pub-status" id="pub-status">
+      <div class="pub-status-dot"></div>
+      <span id="pub-status-text"></span>
+    </div>
+
+    <div class="pat-overlay" id="pat-overlay">
+      <div class="pat-modal">
+        <h3>Editor Token</h3>
+        <p>Paste your fine-grained GitHub token to publish changes to the live site. The token is forgotten when you close this tab.</p>
+        <input type="password" id="pat-input" placeholder="github_pat_…" />
+        <div class="pat-error" id="pat-error"></div>
+        <div class="pat-actions">
+          <button class="btn-publish" onclick="savePAT()">Save & Publish</button>
+          <button class="btn-save" onclick="hidePATModal()">Cancel</button>
+          <a class="pat-link" href="https://github.com/settings/personal-access-tokens/new" target="_blank">Get a token ↗</a>
+        </div>
+      </div>
     </div>
 
     <div class="workspace">
@@ -1194,6 +1314,138 @@ function handleRSVP(e){
             2000,
           );
         } catch (e) {}
+      }
+
+      const GH_OWNER = "martonstudio";
+      const GH_REPO  = "wedding";
+      const GH_PATH  = "public/content.json";
+
+      function showPATModal(errorMsg) {
+        document.getElementById("pat-overlay").classList.add("visible");
+        document.getElementById("pat-input").focus();
+        const err = document.getElementById("pat-error");
+        if (errorMsg) { err.textContent = errorMsg; err.classList.add("visible"); }
+        else err.classList.remove("visible");
+      }
+      function hidePATModal() {
+        document.getElementById("pat-overlay").classList.remove("visible");
+      }
+      function savePAT() {
+        const val = document.getElementById("pat-input").value.trim();
+        if (!val) return;
+        sessionStorage.setItem("gh_pat", val);
+        hidePATModal();
+        publishSite();
+      }
+
+      function setPublishStatus(state, text) {
+        const bar = document.getElementById("pub-status");
+        bar.className = "pub-status visible " + state;
+        document.getElementById("pub-status-text").textContent = text;
+        document.getElementById("btn-publish").disabled = (state === "saving" || state === "deploying");
+      }
+      function clearPublishStatus() {
+        document.getElementById("pub-status").className = "pub-status";
+        document.getElementById("btn-publish").disabled = false;
+      }
+
+      function toBase64UTF8(str) {
+        const bytes = new TextEncoder().encode(str);
+        let binary = "";
+        bytes.forEach((b) => (binary += String.fromCharCode(b)));
+        return btoa(binary);
+      }
+
+      async function ghFetch(method, path, body) {
+        const pat = sessionStorage.getItem("gh_pat");
+        return fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`, {
+          method,
+          headers: {
+            Authorization: `Bearer ${pat}`,
+            Accept: "application/vnd.github+json",
+            "Content-Type": "application/json",
+          },
+          body: body ? JSON.stringify(body) : undefined,
+        });
+      }
+
+      async function publishSite() {
+        const pat = sessionStorage.getItem("gh_pat");
+        if (!pat) { showPATModal(); return; }
+
+        saveCurrentToContent();
+        setPublishStatus("saving", "Saving content.json…");
+
+        try {
+          const getRes = await ghFetch("GET", GH_PATH);
+
+          if (getRes.status === 401 || getRes.status === 403) {
+            sessionStorage.removeItem("gh_pat");
+            clearPublishStatus();
+            showPATModal("Token invalid or expired — paste a new one.");
+            return;
+          }
+          if (!getRes.ok) throw new Error(`GET ${getRes.status}`);
+
+          const current = await getRes.json();
+          const newJSON = JSON.stringify(content, null, 2);
+
+          const putRes = await ghFetch("PUT", GH_PATH, {
+            message: "Update content via web editor",
+            content: toBase64UTF8(newJSON),
+            sha: current.sha,
+            branch: "main",
+          });
+
+          if (putRes.status === 409) {
+            // sha conflict — fetch fresh sha and retry once
+            const retryGet = await ghFetch("GET", GH_PATH);
+            const retryData = await retryGet.json();
+            const retryPut = await ghFetch("PUT", GH_PATH, {
+              message: "Update content via web editor (retry)",
+              content: toBase64UTF8(newJSON),
+              sha: retryData.sha,
+              branch: "main",
+            });
+            if (!retryPut.ok) throw new Error(`PUT retry ${retryPut.status}`);
+          } else if (!putRes.ok) {
+            throw new Error(`PUT ${putRes.status}`);
+          }
+
+          setPublishStatus("deploying", "Deploying… live in ~1 min");
+          await pollDeployment();
+
+        } catch (err) {
+          setPublishStatus("error", `Error: ${err.message}`);
+          setTimeout(clearPublishStatus, 6000);
+        }
+      }
+
+      async function pollDeployment() {
+        const deadline = Date.now() + 90000;
+        while (Date.now() < deadline) {
+          await new Promise((r) => setTimeout(r, 6000));
+          try {
+            const res = await fetch(
+              `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/runs?per_page=1`,
+              { headers: { Authorization: `Bearer ${sessionStorage.getItem("gh_pat")}`, Accept: "application/vnd.github+json" } }
+            );
+            const data = await res.json();
+            const run = data.workflow_runs?.[0];
+            if (run && run.status === "completed" && run.conclusion === "success") {
+              setPublishStatus("live", "Live ✓ — changes are on the site");
+              setTimeout(clearPublishStatus, 8000);
+              return;
+            }
+            if (run && run.status === "completed" && run.conclusion !== "success") {
+              setPublishStatus("error", `Deploy failed (${run.conclusion}) — check GitHub Actions`);
+              setTimeout(clearPublishStatus, 8000);
+              return;
+            }
+          } catch (_) {}
+        }
+        setPublishStatus("live", "Probably live — check the site");
+        setTimeout(clearPublishStatus, 8000);
       }
 
       window.onload = () => {
