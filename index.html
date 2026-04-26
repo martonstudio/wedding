@@ -696,20 +696,33 @@
         document.getElementById("btn-no").className =
           "attend-btn" + (v === "no" ? " active-no" : "");
       }
-      function handleRSVP(e) {
+      async function handleRSVP(e) {
+        e.preventDefault();
+        const form = e.target;
         const name = document.getElementById("f-name").value;
         const att = document.getElementById("f-attending").value.toUpperCase();
         document.getElementById("f-subject").value =
           `[WEDDING] [${name}] [${att}]`;
-        if (
-          e.target.action === window.location.href ||
-          e.target.action === "#"
-        ) {
-          e.preventDefault();
-          document.getElementById("rsvp-form-wrap").style.display = "none";
-          document.getElementById("rsvp-thankyou").classList.add("visible");
-          document.getElementById("ty-body").textContent =
-            content[currentLang].tyMsg;
+        const submitBtn = form.querySelector(".rsvp-submit");
+        submitBtn.disabled = true;
+        try {
+          const res = await fetch(form.action, {
+            method: "POST",
+            body: new FormData(form),
+            headers: { Accept: "application/json" },
+          });
+          if (res.ok) {
+            document.getElementById("rsvp-form-wrap").style.display = "none";
+            document.getElementById("rsvp-thankyou").classList.add("visible");
+            document.getElementById("ty-body").textContent =
+              content[currentLang].tyMsg;
+          } else {
+            submitBtn.disabled = false;
+            submitBtn.textContent = "Try again";
+          }
+        } catch (_) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = "Try again";
         }
       }
       window.onload = () => {
