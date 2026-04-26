@@ -656,6 +656,10 @@
               `<div class="stay-card"><div class="stay-tag">${item.tag}</div><h3>${item.name}</h3><p>${item.desc}</p></div>`,
           )
           .join("");
+        if (content.en.heroImage && content.en.heroImage.startsWith("data:")) {
+          document.getElementById("hero").style.backgroundImage =
+            `url(${content.en.heroImage})`;
+        }
         document.getElementById("btn-yes").textContent = d.btnYes;
         document.getElementById("btn-no").textContent = d.btnNo;
         document
