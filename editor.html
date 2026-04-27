@@ -1274,7 +1274,7 @@ We can't wait to celebrate with you!</textarea
       function savePAT() {
         const val = document.getElementById("pat-input").value.trim();
         if (!val) return;
-        sessionStorage.setItem("gh_pat", val);
+        localStorage.setItem("gh_pat", val);
         hidePATModal();
         publishSite();
       }
@@ -1298,7 +1298,7 @@ We can't wait to celebrate with you!</textarea
       }
 
       async function ghFetch(method, path, body) {
-        const pat = sessionStorage.getItem("gh_pat");
+        const pat = localStorage.getItem("gh_pat");
         return fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`, {
           method,
           headers: {
@@ -1311,7 +1311,7 @@ We can't wait to celebrate with you!</textarea
       }
 
       async function publishSite() {
-        const pat = sessionStorage.getItem("gh_pat");
+        const pat = localStorage.getItem("gh_pat");
         if (!pat) { showPATModal(); return; }
 
         saveCurrentToContent();
@@ -1321,7 +1321,7 @@ We can't wait to celebrate with you!</textarea
           const getRes = await ghFetch("GET", GH_PATH);
 
           if (getRes.status === 401 || getRes.status === 403) {
-            sessionStorage.removeItem("gh_pat");
+            localStorage.removeItem("gh_pat");
             clearPublishStatus();
             showPATModal("Token invalid or expired — paste a new one.");
             return;
@@ -1369,7 +1369,7 @@ We can't wait to celebrate with you!</textarea
           try {
             const res = await fetch(
               `https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/actions/runs?per_page=1`,
-              { headers: { Authorization: `Bearer ${sessionStorage.getItem("gh_pat")}`, Accept: "application/vnd.github+json" } }
+              { headers: { Authorization: `Bearer ${localStorage.getItem("gh_pat")}`, Accept: "application/vnd.github+json" } }
             );
             const data = await res.json();
             const run = data.workflow_runs?.[0];
