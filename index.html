@@ -4,723 +4,653 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex,nofollow" />
-    <title>Sonya & Marton — Wedding Invitation</title>
+    <title>Sonya & Marton — Wedding</title>
     <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=Tenor+Sans&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&family=Tenor+Sans&display=swap"
       rel="stylesheet"
     />
     <style>
-      *,
-      *::before,
-      *::after {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
+      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
       :root {
-        --bg: #faf8f4;
-        --charcoal: #2c2c2c;
         --gold: #b8934a;
-        --white: #fff;
         --font-display: "Cormorant Garamond", serif;
         --font-body: "Tenor Sans", sans-serif;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-      body {
-        font-family: var(--font-body);
-        background: var(--bg);
-        color: var(--charcoal);
-        overflow-x: hidden;
+        --page-w: 100vw;
       }
 
-      /* ── NAV ── */
-      nav {
+      html, body {
+        height: 100%;
+        overflow: hidden;
+        font-family: var(--font-body);
+        background: #1a1a1a;
+        color: #fff;
+      }
+
+      /* ── PAGES CONTAINER ── */
+      .pages {
+        width: var(--page-w);
+        height: 100svh;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        scroll-snap-type: y mandatory;
+        scroll-behavior: smooth;
+        overscroll-behavior: contain;
+        scrollbar-width: none;
+      }
+      .pages::-webkit-scrollbar { display: none; }
+
+      /* ── INDIVIDUAL PAGE ── */
+      .page {
+        width: 100%;
+        height: 100svh;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background-size: cover;
+        background-position: center;
+        overflow: hidden;
+      }
+      .page::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: var(--overlay, rgba(0,0,0,0.45));
+        z-index: 0;
+        pointer-events: none;
+      }
+      .page > * { position: relative; z-index: 1; }
+
+      /* ── PAGE 1: ALBUM COVER ── */
+      #page-1 {
+        background-image: url('/assets/images/hero-wedding.jpg');
+        --overlay: rgba(0,0,0,0.32);
+        justify-content: space-between;
+        padding: 3rem 2.5rem 3.5rem;
+      }
+      .album-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .album-label {
+        font-size: 0.62rem;
+        letter-spacing: 0.65em;
+        text-transform: uppercase;
+        opacity: 0.65;
+      }
+      .album-names {
+        font-family: var(--font-display);
+        font-size: clamp(3rem, 15vw, 5.5rem);
+        font-weight: 300;
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: 0.02em;
+      }
+      .album-plus {
+        display: block;
+        font-size: 0.32em;
+        font-style: italic;
+        font-weight: 300;
+        opacity: 0.55;
+        margin: 0.5em 0;
+        letter-spacing: 0.1em;
+      }
+      .album-meta {
+        margin-top: 1.2rem;
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        opacity: 0.6;
+        line-height: 2.1;
+      }
+
+      /* ── INTERIOR PAGE BACKGROUNDS ── */
+      #page-2 { background: radial-gradient(ellipse at 20% 50%, #28201a 0%, #111 70%); }
+      #page-3 { background: radial-gradient(ellipse at 80% 30%, #1e1e2a 0%, #111 70%); }
+      #page-4 { background: radial-gradient(ellipse at 30% 60%, #221b10 0%, #111 70%); }
+      #page-5 { background: radial-gradient(ellipse at 70% 40%, #10181e 0%, #111 70%); }
+      #page-6 { background: radial-gradient(ellipse at 50% 80%, #1c1c1c 0%, #0d0d0d 70%); }
+      #page-7 { background: radial-gradient(ellipse at 40% 20%, #201a10 0%, #111 70%); }
+      #page-2::before, #page-3::before, #page-4::before,
+      #page-5::before, #page-6::before, #page-7::before { display: none; }
+
+      /* ── PAGE CONTENT ── */
+      .page-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 5.5rem 2.5rem 4rem;
+      }
+      .page-content.scrollable {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
+        padding-top: 5rem;
+      }
+
+      .page-label {
+        font-size: 0.58rem;
+        letter-spacing: 0.45em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1.2rem;
+      }
+      .page-title {
+        font-family: var(--font-display);
+        font-size: clamp(2rem, 9vw, 3.2rem);
+        font-weight: 300;
+        line-height: 1.15;
+        margin-bottom: 1.5rem;
+      }
+      .page-body {
+        font-size: 0.88rem;
+        line-height: 1.9;
+        opacity: 0.72;
+        white-space: pre-line;
+      }
+
+      /* ── PAGE 3: LOCATION CARDS ── */
+      .location-cards {
+        display: flex;
+        gap: 2rem;
+        margin: 1.5rem 0 2rem;
+      }
+      .location-card { flex: 1; }
+      .location-card + .location-card {
+        border-left: 1px solid rgba(255,255,255,0.12);
+        padding-left: 2rem;
+      }
+      .location-tag {
+        font-size: 0.56rem;
+        letter-spacing: 0.35em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.7rem;
+      }
+      .location-date {
+        font-family: var(--font-display);
+        font-size: clamp(1.1rem, 4vw, 1.5rem);
+        font-weight: 300;
+        line-height: 1.3;
+        margin-bottom: 0.3rem;
+      }
+      .location-place {
+        font-size: 0.75rem;
+        opacity: 0.5;
+      }
+      .location-note {
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        opacity: 0.35;
+      }
+
+      /* ── PAGE 6: RSVP FORM ── */
+      .rsvp-form { display: flex; flex-direction: column; gap: 1.2rem; }
+
+      .form-row { display: flex; flex-direction: column; gap: 0.4rem; }
+      .form-row > label {
+        font-size: 0.56rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        opacity: 0.45;
+      }
+      .form-row input[type="text"],
+      .form-row input[type="email"],
+      .form-row select {
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding: 0.65rem 0;
+        color: #fff;
+        font-family: var(--font-body);
+        font-size: 0.95rem;
+        outline: none;
+        width: 100%;
+        transition: border-color 0.2s;
+      }
+      .form-row input:focus,
+      .form-row select:focus { border-bottom-color: var(--gold); }
+      .form-row select { background: #111; }
+
+      .attend-toggle { display: flex; gap: 0.6rem; margin-top: 0.3rem; }
+      .attend-btn {
+        flex: 1;
+        padding: 0.85rem 0.4rem;
+        border: 1px solid rgba(255,255,255,0.18);
+        background: transparent;
+        color: rgba(255,255,255,0.5);
+        font-family: var(--font-body);
+        font-size: 0.65rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .attend-btn.active-yes { background: var(--gold); border-color: var(--gold); color: #fff; }
+      .attend-btn.active-no  { background: #2a2a2a; border-color: #2a2a2a; color: #fff; }
+
+      .event-opts { display: flex; gap: 0.8rem; margin-top: 0.3rem; }
+      .event-opt {
+        flex: 1;
+        padding: 0.75rem;
+        border: 1px solid rgba(255,255,255,0.14);
+        font-size: 0.72rem;
+        letter-spacing: 0.05em;
+        cursor: pointer;
+        transition: all 0.2s;
+        user-select: none;
+        text-align: center;
+      }
+      .event-opt input[type="checkbox"] { display: none; }
+      .event-opt.checked { border-color: var(--gold); color: var(--gold); }
+
+      .form-error {
+        font-size: 0.68rem;
+        color: #e57373;
+        display: none;
+        margin-top: -0.4rem;
+      }
+      .form-error.visible { display: block; }
+
+      .submit-btn {
+        width: 100%;
+        padding: 1.05rem;
+        background: var(--gold);
+        border: none;
+        color: #fff;
+        font-family: var(--font-body);
+        font-size: 0.7rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        cursor: pointer;
+        margin-top: 0.4rem;
+        transition: opacity 0.2s;
+      }
+      .submit-btn:disabled { opacity: 0.5; cursor: default; }
+
+      .rsvp-thankyou { display: none; padding: 1rem 0; }
+      .rsvp-thankyou.visible { display: block; }
+      .rsvp-thankyou h3 {
+        font-family: var(--font-display);
+        font-size: 2rem;
+        font-weight: 300;
+        margin-bottom: 0.8rem;
+      }
+      .rsvp-thankyou p { opacity: 0.65; line-height: 1.75; font-size: 0.88rem; }
+
+      /* ── PAGE 7: THANK YOU ── */
+      .scroll-hint {
+        margin-top: 2.5rem;
+        font-size: 0.58rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        opacity: 0.3;
+      }
+
+      /* ── TOP CHROME ── */
+      .top-chrome {
         position: fixed;
         top: 0;
         left: 0;
         right: 0;
         z-index: 100;
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        gap: 2rem;
-        padding: 1.2rem;
-        background: rgba(255, 255, 255, 0.85);
-        backdrop-filter: blur(10px);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        font-size: 0.65rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
+        padding: 1.4rem 1.8rem;
       }
-      nav a {
-        color: var(--charcoal);
+      .edit-link {
+        font-size: 0.56rem;
+        color: var(--gold);
         text-decoration: none;
-        transition: 0.2s;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        opacity: 0.8;
       }
-      .lang-nav {
-        display: flex;
-        gap: 0.8rem;
-        margin-left: 1.5rem;
-        padding-left: 1.5rem;
-        border-left: 1px solid #ddd;
-      }
-      .lang-nav-btn {
+      .lang-nav { display: flex; gap: 0.8rem; }
+      .lang-btn {
         background: none;
         border: none;
+        color: rgba(255,255,255,0.3);
+        font-size: 0.58rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
         cursor: pointer;
-        font-size: 0.65rem;
-        color: #888;
-        transition: 0.2s;
-      }
-      .lang-nav-btn.active {
-        color: var(--gold);
-        font-weight: 600;
-      }
-
-      /* ── ANIMATIONS ── */
-      .reveal {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      }
-      .reveal.in-view {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /* ── SECTIONS ── */
-      section {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        padding: 3rem 2rem;
-        position: relative;
-      }
-      section:not(#hero) {
-        min-height: auto;
-      }
-      .section-inner {
-        max-width: 940px;
-        margin: 0 auto;
-        width: 100%;
-      }
-
-      /* ── PAGE 1: HERO ── */
-      #hero {
-        background-image: url("/assets/images/hero-wedding.jpg");
-        background-size: cover;
-        background-position: center;
-        color: white;
-        text-align: center;
-      }
-      #hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.3);
-        z-index: 1;
-      }
-      .hero-content {
-        position: relative;
-        z-index: 2;
-      }
-      .hero-eyebrow {
-        font-size: 0.85rem;
-        letter-spacing: 0.4em;
-        margin-bottom: 1.5rem;
-        font-weight: 600;
-        animation: fadeUp 1s ease both;
-      }
-      .hero-names {
-        font-family: var(--font-display);
-        font-size: clamp(3.5rem, 12vw, 8.5rem);
-        line-height: 0.9;
-        text-transform: uppercase;
-        margin-bottom: 1.5rem;
-        font-weight: 600;
-        animation: fadeUp 1s 0.2s ease both;
-      }
-      .hero-ampersand {
-        display: block;
-        font-size: 0.4em;
-        margin: 0.5rem 0;
-        font-weight: 300;
-        font-style: italic;
-      }
-      .hero-location {
-        font-size: 0.85rem;
-        letter-spacing: 0.25em;
-        opacity: 0.9;
-        text-transform: uppercase;
-        margin-bottom: 3.5rem;
-        animation: fadeUp 1s 0.4s ease both;
-      }
-      .hero-cta {
-        display: inline-block;
-        padding: 1.1rem 3.5rem;
-        border: 1.5px solid white;
-        color: white;
-        text-decoration: none;
-        font-size: 0.75rem;
-        letter-spacing: 0.3em;
-        text-transform: uppercase;
-        transition: 0.3s;
-        font-weight: 600;
-        animation: fadeUp 1s 0.6s ease both;
-      }
-      .hero-cta:hover {
-        background: white;
-        color: black;
-      }
-
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(20px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      /* ── PAGE 2: DATE & VENUE ── */
-      #details {
-        background: var(--bg);
-      }
-      .section-label {
-        font-size: 0.7rem;
-        letter-spacing: 0.35em;
-        color: var(--gold);
-        margin-bottom: 1rem;
-        text-transform: uppercase;
-        font-weight: 600;
-      }
-      .section-title {
-        font-family: var(--font-display);
-        font-size: clamp(2.2rem, 5vw, 3rem);
-        margin-bottom: 1.5rem;
-        font-weight: 300;
-        line-height: 1.2;
-      }
-      .details-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 1.5rem;
-      }
-      .detail-card h3 {
-        font-family: var(--font-display);
-        font-size: 1.6rem;
-        margin-bottom: 0.8rem;
-        font-weight: 600;
-        border-bottom: 1px solid var(--gold);
-        padding-bottom: 0.5rem;
-        display: inline-block;
-      }
-      .detail-card p {
-        line-height: 1.7;
-        color: var(--charcoal);
-        opacity: 0.8;
-      }
-
-      /* ── PAGE 3: SCHEDULE ── */
-      #schedule {
-        background: #fff;
-      }
-      .timeline {
-        position: relative;
-        padding-left: 2.5rem;
-        border-left: 1px solid #ddd;
-        margin-left: 0.5rem;
-      }
-      .timeline-item {
-        margin-bottom: 1.5rem;
-        position: relative;
-      }
-      .timeline-item::before {
-        content: "";
-        position: absolute;
-        left: -2.85rem;
-        top: 0.5rem;
-        width: 11px;
-        height: 11px;
-        background: var(--gold);
-        border-radius: 50%;
-      }
-      .timeline-time {
-        font-weight: 600;
-        color: var(--gold);
-        font-size: 1rem;
-        margin-bottom: 0.4rem;
-        letter-spacing: 0.05em;
-      }
-      .timeline-desc h4 {
-        font-size: 1.1rem;
-        margin-bottom: 0.5rem;
-        font-weight: 600;
-      }
-      .timeline-desc p {
-        line-height: 1.6;
-        opacity: 0.7;
-      }
-
-      /* ── PAGE 4: ACCOMMODATION ── */
-      #stay {
-        background: #faf8f4;
-      }
-      .stay-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-      }
-      .stay-card {
-        padding: 2.5rem;
-        border: 1px solid #ddd;
-        background: white;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
-      }
-      .stay-tag {
-        font-size: 0.7rem;
-        color: var(--gold);
-        text-transform: uppercase;
-        margin-bottom: 1rem;
-        font-weight: 600;
-        letter-spacing: 0.1em;
-      }
-      .stay-card h3 {
-        font-family: var(--font-display);
-        font-size: 1.6rem;
-        margin-bottom: 1rem;
-        font-weight: 600;
-      }
-      .stay-card p {
-        line-height: 1.6;
-        opacity: 0.8;
-        margin-bottom: 1.5rem;
-      }
-
-      /* ── PAGE 5: RSVP ── */
-      #rsvp {
-        background: var(--charcoal);
-        color: white;
-        padding: 3rem 2rem;
-      }
-      #rsvp .section-title {
-        color: white;
-      }
-      .rsvp-form {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-        max-width: 800px;
-        margin: 0 auto;
-      }
-      .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 0.6rem;
-      }
-      .form-group.full {
-        grid-column: 1 / -1;
-      }
-      .form-group label {
-        font-size: 0.7rem;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        opacity: 0.8;
-        font-weight: 600;
-      }
-      .form-group input,
-      .form-group textarea,
-      .form-group select {
-        background: transparent;
-        border: none;
-        border-bottom: 1px solid #555;
-        padding: 0.8rem 0;
-        color: white;
-        outline: none;
         font-family: var(--font-body);
-        font-size: 1rem;
-        transition: 0.3s;
+        transition: color 0.2s;
+        padding: 0;
       }
-      .form-group input:focus {
-        border-bottom-color: var(--gold);
-      }
-      .event-choices {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1rem;
-        margin-top: 0.5rem;
-      }
-      .event-opt {
-        border: 1px solid #444;
-        padding: 1.2rem;
-        cursor: pointer;
-        transition: 0.2s;
-      }
-      .event-opt.active {
-        background: var(--gold);
-        border-color: var(--gold);
-        color: white;
-      }
-      .event-opt input {
-        display: none;
-      }
-      .attend-toggle {
+      .lang-btn.active { color: #fff; }
+
+      /* ── DOTS (right side, vertical) ── */
+      .dots {
+        position: fixed;
+        right: 1.2rem;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 100;
         display: flex;
-        gap: 1rem;
+        flex-direction: column;
+        gap: 0.45rem;
+        align-items: center;
       }
-      .attend-btn {
-        flex: 1;
-        padding: 1.1rem;
-        border: 1px solid #555;
-        background: transparent;
-        color: white;
-        cursor: pointer;
-        font-size: 0.75rem;
-        text-transform: uppercase;
-        transition: 0.2s;
-        font-weight: 600;
-      }
-      .attend-btn.active-yes {
-        background: var(--gold);
-        border-color: var(--gold);
-      }
-      .attend-btn.active-no {
-        background: #444;
-        border-color: #444;
-      }
-      .rsvp-submit {
-        grid-column: 1 / -1;
-        background: var(--gold);
-        color: white;
+      .dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 2px;
+        background: rgba(255,255,255,0.22);
         border: none;
-        padding: 1.3rem;
         cursor: pointer;
-        text-transform: uppercase;
-        letter-spacing: 0.2em;
-        font-weight: 600;
-        margin-top: 1rem;
-        transition: 0.2s;
+        padding: 0;
+        transition: all 0.3s;
       }
-      .rsvp-submit:hover {
-        opacity: 0.9;
-      }
-      .rsvp-thankyou {
-        display: none;
-        text-align: center;
-        padding: 4rem 0;
-      }
-      .rsvp-thankyou.visible {
-        display: block;
+      .dot.active {
+        background: #fff;
+        height: 16px;
       }
 
-      footer {
-        padding: 2rem;
-        text-align: center;
-        font-size: 0.7rem;
-        opacity: 0.5;
-        text-transform: uppercase;
-        letter-spacing: 0.15em;
-        background: #1a1a1a;
-        color: white;
-      }
+      /* ── DESKTOP 9:16 ── */
+      @media (min-width: 600px) {
+        :root { --page-w: calc(100svh * 9 / 16); }
 
-      @media (max-width: 768px) {
-        nav {
-          gap: 1rem;
-          padding: 1rem 0.5rem;
+        body {
+          display: flex;
+          justify-content: center;
+          background-image: url('/assets/images/hero-wedding.jpg');
+          background-size: cover;
+          background-position: center;
         }
-        .rsvp-form {
-          grid-template-columns: 1fr;
+        body::before {
+          content: '';
+          position: fixed;
+          inset: 0;
+          backdrop-filter: blur(28px) brightness(0.4);
+          z-index: 0;
         }
-        .event-choices {
-          grid-template-columns: 1fr;
+        .pages {
+          position: relative;
+          z-index: 1;
+          box-shadow: 0 0 120px rgba(0,0,0,0.8);
         }
-        section {
-          min-height: auto;
-          padding: 5rem 1.5rem;
+        .top-chrome {
+          left: 50%;
+          right: auto;
+          width: var(--page-w);
+          transform: translateX(-50%);
+        }
+        .dots {
+          right: auto;
+          left: calc(50% + var(--page-w) / 2 + 0.9rem);
+          transform: translateY(-50%);
         }
       }
     </style>
   </head>
   <body>
-    <nav>
-      <a href="./editor.html" style="font-size:0.6rem;color:var(--gold);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;margin-right:auto;">✦ Edit</a>
-      <div class="links">
-        <a href="#details">Details</a>
-        <a href="#schedule">Schedule</a>
-        <a href="#stay">Stay</a>
-        <a href="#rsvp">RSVP</a>
-      </div>
+
+    <div class="top-chrome">
+      <a href="./editor.html" class="edit-link">✦ Edit</a>
       <div class="lang-nav">
-        <button
-          class="lang-nav-btn active"
-          data-lang="en"
-          onclick="setLanguage('en')"
-        >
-          EN
-        </button>
-        <button class="lang-nav-btn" data-lang="hu" onclick="setLanguage('hu')">
-          HU
-        </button>
-        <button class="lang-nav-btn" data-lang="ru" onclick="setLanguage('ru')">
-          RU
-        </button>
+        <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+        <button class="lang-btn" data-lang="hu" onclick="setLanguage('hu')">HU</button>
+        <button class="lang-btn" data-lang="ru" onclick="setLanguage('ru')">RU</button>
       </div>
-    </nav>
+    </div>
 
-    <section id="hero">
-      <div class="hero-content">
-        <p class="hero-eyebrow" data-t="eyebrow">WE ARE GETTING MARRIED</p>
-        <h1 class="hero-names">
-          Sonya<span class="hero-ampersand">&amp;</span>Marton
-        </h1>
-        <p class="hero-location" data-t="heroLocation">
-          Mad · Tokaj Wine Region, Hungary
-        </p>
-        <a href="#rsvp" class="hero-cta" data-t="btnNavRSVP">Kindly RSVP</a>
-      </div>
-    </section>
+    <div class="pages" id="pages">
 
-    <section id="details">
-      <div class="section-inner reveal">
-        <p class="section-label">Information</p>
-        <h2 class="section-title" data-t="dateDisplay">
-          Saturday, 10th of October, 2026
-        </h2>
-        <div class="details-grid">
-          <div class="detail-card">
-            <h3>Venue</h3>
-            <p data-t="venueName">Mad, Hungary</p>
-            <p data-t="venueAddress">Tokaj Wine Region<br />Hungary</p>
-          </div>
-          <div class="detail-card">
-            <h3>Dress Code</h3>
-            <p data-t="dressTitle">Cocktail Attire</p>
-            <p data-t="dressNote">
-              Semi-formal. Comfort is key for village walks!
-            </p>
-          </div>
-          <div class="detail-card">
-            <h3>Directions</h3>
-            <p data-t="gettingThere">
-              Flights to Budapest, then a 2.5hr drive or train to Mad.
-            </p>
+      <!-- 1: ALBUM COVER -->
+      <div class="page" id="page-1">
+        <div class="album-top">
+          <span class="album-label" data-t="page1Label">WEDDING</span>
+        </div>
+        <div class="album-bottom">
+          <h1 class="album-names">
+            <span data-t="name1">Sonya</span>
+            <span class="album-plus">+</span>
+            <span data-t="name2">Marton</span>
+          </h1>
+          <div class="album-meta">
+            <div data-t="dateShort">10 · X · 2026</div>
+            <div data-t="heroLocation">Mád · Tokaj</div>
           </div>
         </div>
       </div>
-    </section>
 
-    <section id="schedule">
-      <div class="section-inner reveal">
-        <p class="section-label">Events</p>
-        <h2 class="section-title">Schedule</h2>
-        <div class="timeline"></div>
+      <!-- 2: OUR STORY -->
+      <div class="page" id="page-2">
+        <div class="page-content">
+          <p class="page-label" data-t="storyLabel">Our Story</p>
+          <p class="page-body" data-t="storyText"></p>
+        </div>
       </div>
-    </section>
 
-    <section id="stay">
-      <div class="section-inner reveal">
-        <p class="section-label">Accommodation</p>
-        <h2 class="section-title">Where to Stay</h2>
-        <p
-          style="margin-bottom: 1.5rem; font-size: 1.1rem; line-height: 1.8"
-          data-t="stayIntro"
-        >
-          We recommend staying in local guesthouses in Mad to enjoy the village
-          atmosphere.
-        </p>
-        <div class="stay-cards"></div>
-        <p style="margin-top: 1.5rem">
-          Booking Code:
-          <b data-t="bookingCode" style="color: var(--gold)"
-            >Sonya & Marton Wedding</b
-          >
-        </p>
+      <!-- 3: LOCATIONS -->
+      <div class="page" id="page-3">
+        <div class="page-content">
+          <p class="page-label" data-t="locationLabel">Where & When</p>
+          <h2 class="page-title" data-t="locationIntro">Two celebrations</h2>
+          <div class="location-cards">
+            <div class="location-card">
+              <p class="location-tag">Hungary</p>
+              <p class="location-date" data-t="hungaryDate">10 October 2026</p>
+              <p class="location-place" data-t="venueName">Mád, Tokaj</p>
+            </div>
+            <div class="location-card">
+              <p class="location-tag">Sydney</p>
+              <p class="location-date" data-t="sydneyDate">November 2026</p>
+              <p class="location-place" data-t="sydneyVenue">Sydney, Australia</p>
+            </div>
+          </div>
+          <p class="location-note" data-t="locationNote">Join us for one — or both</p>
+        </div>
       </div>
-    </section>
 
-    <section id="rsvp">
-      <div class="section-inner reveal">
-        <p class="section-label" style="color: white">Join Us</p>
-        <h2 class="section-title">RSVP</h2>
-        <p style="margin-bottom: 1.5rem" data-t="rsvpIntro">
-          Please let us know if you can join us in Hungary, Sydney, or both!
-        </p>
-        <div id="rsvp-form-wrap">
-          <form
-            class="rsvp-form"
-            id="rsvp-form"
-            method="POST"
-            onsubmit="handleRSVP(event)"
-          >
-            <div class="form-group">
-              <label>Full Name</label
-              ><input type="text" name="name" id="f-name" required />
-            </div>
-            <div class="form-group">
-              <label>Email</label><input type="email" name="email" required />
-            </div>
-            <div class="form-group full">
-              <label>Events</label>
-              <div class="event-choices">
-                <div class="event-opt" onclick="toggleEvent(this)">
-                  <input type="checkbox" name="events" value="Hungary" />
-                  <h4>Hungary</h4>
-                  <p>10 Oct 2026</p>
+      <!-- 4: HUNGARY -->
+      <div class="page" id="page-4">
+        <div class="page-content scrollable">
+          <p class="page-label" data-t="hungaryLabel">Hungary</p>
+          <h2 class="page-title" data-t="hungaryTitle">The Wedding</h2>
+          <p class="page-body" data-t="hungaryText"></p>
+        </div>
+      </div>
+
+      <!-- 5: SYDNEY -->
+      <div class="page" id="page-5">
+        <div class="page-content">
+          <p class="page-label" data-t="sydneyLabel">Sydney</p>
+          <h2 class="page-title" data-t="sydneyTitle">Sydney Celebration</h2>
+          <p class="page-body" data-t="sydneyText"></p>
+        </div>
+      </div>
+
+      <!-- 6: RSVP -->
+      <div class="page" id="page-6">
+        <div class="page-content scrollable">
+          <p class="page-label" data-t="rsvpLabel">Join Us</p>
+          <h2 class="page-title" data-t="rsvpTitle">Are you coming?</h2>
+          <div id="rsvp-form-wrap">
+            <form class="rsvp-form" id="rsvp-form" method="POST" onsubmit="handleRSVP(event)">
+              <div class="form-row">
+                <label>Full Name</label>
+                <input type="text" name="name" id="f-name" required />
+              </div>
+              <div class="form-row">
+                <label>Email</label>
+                <input type="email" name="email" required />
+              </div>
+              <div class="form-row">
+                <label>Attending?</label>
+                <div class="attend-toggle">
+                  <button type="button" class="attend-btn" id="btn-yes" onclick="setAttending('yes')">Joyfully accepts</button>
+                  <button type="button" class="attend-btn" id="btn-no" onclick="setAttending('no')">Regretfully declines</button>
                 </div>
-                <div class="event-opt" onclick="toggleEvent(this)">
-                  <input type="checkbox" name="events" value="Sydney" />
-                  <h4>Sydney</h4>
-                  <p>20 Nov 2026</p>
+                <input type="hidden" name="attending" id="f-attending" />
+              </div>
+              <div class="form-row">
+                <label>Which celebration?</label>
+                <div class="event-opts">
+                  <div class="event-opt" onclick="toggleEvent(this)">
+                    <input type="checkbox" name="events" value="Hungary" />
+                    Hungary
+                  </div>
+                  <div class="event-opt" onclick="toggleEvent(this)">
+                    <input type="checkbox" name="events" value="Sydney" />
+                    Sydney
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="form-group">
-              <label>Total Guests</label
-              ><select name="guests" style="background: #333; color: white">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label>Attending?</label>
-              <div class="attend-toggle">
-                <button
-                  type="button"
-                  class="attend-btn"
-                  id="btn-yes"
-                  onclick="setAttending('yes')"
-                >
-                  Yes</button
-                ><button
-                  type="button"
-                  class="attend-btn"
-                  id="btn-no"
-                  onclick="setAttending('no')"
-                >
-                  No
-                </button>
+              <div class="form-row">
+                <label>Guests</label>
+                <select name="guests">
+                  <option>1</option><option>2</option><option>3</option><option>4</option>
+                </select>
               </div>
-              <input type="hidden" name="attending" id="f-attending" required />
-            </div>
-            <input type="hidden" name="_subject" id="f-subject" value="Wedding RSVP" />
-            <input type="hidden" name="_language" id="f-language" value="en" />
-            <button type="submit" class="rsvp-submit">Send RSVP</button>
-          </form>
-        </div>
-        <div class="rsvp-thankyou" id="rsvp-thankyou">
-          <h3>Thank You!</h3>
-          <p id="ty-body"></p>
+              <div class="form-error" id="form-error">Please let us know if you can attend.</div>
+              <input type="hidden" name="_subject" id="f-subject" />
+              <input type="hidden" name="_language" id="f-language" value="en" />
+              <button type="submit" class="submit-btn">Send RSVP</button>
+            </form>
+          </div>
+          <div class="rsvp-thankyou" id="rsvp-thankyou">
+            <h3>Thank you!</h3>
+            <p id="ty-body"></p>
+          </div>
         </div>
       </div>
-    </section>
 
-    <footer>
-      <p>
-        <span data-t="name1">Sonya</span> &amp;
-        <span data-t="name2">Marton</span> —
-        <span data-t="dateShort">10 Oct 2026</span>
-      </p>
-    </footer>
+      <!-- 7: THANK YOU -->
+      <div class="page" id="page-7">
+        <div class="page-content scrollable">
+          <p class="page-label" data-t="thankYouLabel">See You There</p>
+          <h2 class="page-title" data-t="thankYouTitle">Thank you for celebrating with us</h2>
+          <p class="page-body" data-t="thankYouText"></p>
+          <p class="scroll-hint">↓ More details coming via email</p>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Page dots -->
+    <div class="dots" id="dots">
+      <button class="dot active" onclick="goToPage(0)"></button>
+      <button class="dot" onclick="goToPage(1)"></button>
+      <button class="dot" onclick="goToPage(2)"></button>
+      <button class="dot" onclick="goToPage(3)"></button>
+      <button class="dot" onclick="goToPage(4)"></button>
+      <button class="dot" onclick="goToPage(5)"></button>
+      <button class="dot" onclick="goToPage(6)"></button>
+    </div>
 
     <script>
       let content = {};
-      let currentLang = "en";
+      let currentLang = 'en';
+      let currentPage = 0;
 
       function setLanguage(lang) {
         currentLang = lang;
         const d = content[lang];
-        document.querySelectorAll("[data-t]").forEach((el) => {
+        if (!d) return;
+
+        document.querySelectorAll('[data-t]').forEach(el => {
           const key = el.dataset.t;
-          if (!d[key]) return;
-          if (el.tagName === "INPUT" || el.tagName === "TEXTAREA")
-            el.value = d[key];
-          else if (key === "venueAddress")
-            el.innerHTML = d[key].replace(/\n/g, "<br>");
-          else el.textContent = d[key];
+          if (d[key] === undefined) return;
+          el.textContent = d[key];
         });
-        document.querySelector(".hero-names").innerHTML =
-          `${d.name1}<span class="hero-ampersand">&amp;</span>${d.name2}`;
-        document.querySelector(".timeline").innerHTML = d.schedule
-          .map(
-            (item) =>
-              `<div class="timeline-item"><div class="timeline-time">${item.time}</div><div class="timeline-desc"><h4>${item.title}</h4><p>${item.desc}</p></div></div>`,
-          )
-          .join("");
-        document.querySelector(".stay-cards").innerHTML = d.stay
-          .map(
-            (item) =>
-              `<div class="stay-card"><div class="stay-tag">${item.tag}</div><h3>${item.name}</h3><p>${item.desc}</p></div>`,
-          )
-          .join("");
-        if (content.en.heroImage && content.en.heroImage.startsWith("data:")) {
-          document.getElementById("hero").style.backgroundImage =
-            `url(${content.en.heroImage})`;
+
+        if (d.heroImage && d.heroImage.startsWith('data:')) {
+          document.getElementById('page-1').style.backgroundImage = `url(${d.heroImage})`;
         }
-        document.getElementById("btn-yes").textContent = d.btnYes;
-        document.getElementById("btn-no").textContent = d.btnNo;
-        document
-          .querySelectorAll(".lang-nav-btn")
-          .forEach((b) =>
-            b.classList.toggle("active", b.dataset.lang === lang),
-          );
+
+        const btnYes = document.getElementById('btn-yes');
+        const btnNo  = document.getElementById('btn-no');
+        if (d.btnYes) btnYes.textContent = d.btnYes;
+        if (d.btnNo)  btnNo.textContent  = d.btnNo;
+
+        document.querySelectorAll('.lang-btn').forEach(b => {
+          b.classList.toggle('active', b.dataset.lang === lang);
+        });
+
+        document.getElementById('f-language').value = lang;
         document.title = `${d.name1} & ${d.name2}`;
       }
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) entry.target.classList.add("in-view");
-          });
-        },
-        { threshold: 0.1 },
-      );
-      document
-        .querySelectorAll(".reveal")
-        .forEach((el) => observer.observe(el));
+      function goToPage(index) {
+        const pages = document.querySelectorAll('.page');
+        if (index < 0 || index >= pages.length) return;
+        pages[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      // Dot highlighting
+      const pagesContainer = document.getElementById('pages');
+      const pageEls = document.querySelectorAll('.page');
+      const dotEls  = document.querySelectorAll('.dot');
+
+      const dotObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+            currentPage = Array.from(pageEls).indexOf(entry.target);
+            dotEls.forEach((d, i) => d.classList.toggle('active', i === currentPage));
+          }
+        });
+      }, { root: pagesContainer, threshold: 0.5 });
+
+      pageEls.forEach(p => dotObserver.observe(p));
+
+      // Keyboard navigation
+      document.addEventListener('keydown', e => {
+        if (e.key === 'ArrowDown' || e.key === 'ArrowRight') goToPage(currentPage + 1);
+        if (e.key === 'ArrowUp'   || e.key === 'ArrowLeft')  goToPage(currentPage - 1);
+      });
+
+      // RSVP
+      function setAttending(v) {
+        document.getElementById('f-attending').value = v;
+        document.getElementById('btn-yes').className = 'attend-btn' + (v === 'yes' ? ' active-yes' : '');
+        document.getElementById('btn-no').className  = 'attend-btn' + (v === 'no'  ? ' active-no'  : '');
+        document.getElementById('form-error').classList.remove('visible');
+      }
 
       function toggleEvent(el) {
-        el.classList.toggle("active");
-        const cb = el.querySelector("input");
+        const cb = el.querySelector('input');
         cb.checked = !cb.checked;
+        el.classList.toggle('checked', cb.checked);
       }
-      function setAttending(v) {
-        document.getElementById("f-attending").value = v;
-        document.getElementById("btn-yes").className =
-          "attend-btn" + (v === "yes" ? " active-yes" : "");
-        document.getElementById("btn-no").className =
-          "attend-btn" + (v === "no" ? " active-no" : "");
-      }
+
       async function handleRSVP(e) {
         e.preventDefault();
         const form = e.target;
-        const name = document.getElementById("f-name").value;
-        const att = document.getElementById("f-attending").value.toUpperCase();
-        document.getElementById("f-subject").value = `[WEDDING] [${name}] [${att}]`;
-        document.getElementById("f-language").value = currentLang;
-        form.querySelector(".rsvp-submit").disabled = true;
+        if (!document.getElementById('f-attending').value) {
+          document.getElementById('form-error').classList.add('visible');
+          return;
+        }
+        const name = document.getElementById('f-name').value;
+        const att  = document.getElementById('f-attending').value.toUpperCase();
+        document.getElementById('f-subject').value = `[WEDDING] [${name}] [${att}]`;
+        const btn = form.querySelector('.submit-btn');
+        btn.disabled = true;
         try {
-          await fetch(form.action, { method: "POST", body: new FormData(form), mode: "no-cors" });
+          await fetch(form.action, { method: 'POST', body: new FormData(form), mode: 'no-cors' });
         } catch (_) {}
-        document.getElementById("rsvp-form-wrap").style.display = "none";
-        document.getElementById("rsvp-thankyou").classList.add("visible");
-        document.getElementById("ty-body").textContent = content[currentLang].tyMsg;
+        document.getElementById('rsvp-form-wrap').style.display = 'none';
+        document.getElementById('rsvp-thankyou').classList.add('visible');
+        document.getElementById('ty-body').textContent = (content[currentLang] || {}).tyMsg || '';
       }
+
       window.onload = () => {
-        fetch("./content.json")
-          .then((r) => r.json())
-          .then((data) => {
+        fetch('./content.json')
+          .then(r => r.json())
+          .then(data => {
             content = data;
             if (data.formUrl) {
-              document.getElementById("rsvp-form").action = data.formUrl;
+              document.getElementById('rsvp-form').action = data.formUrl;
             }
-            setLanguage("en");
+            setLanguage('en');
           });
       };
     </script>
