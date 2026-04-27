@@ -642,14 +642,29 @@
         document.getElementById('ty-body').textContent = (content[currentLang] || {}).tyMsg || '';
       }
 
+      function applyPageBackgrounds(data) {
+        for (let i = 2; i <= 7; i++) {
+          const bg = data['bgPage' + i];
+          if (bg) document.getElementById('page-' + i).style.backgroundImage = `url(${bg})`;
+        }
+      }
+
+      window.addEventListener('message', (e) => {
+        if (e.data && e.data.type === 'preview-content') {
+          content = e.data.content;
+          if (e.data.formUrl) document.getElementById('rsvp-form').action = e.data.formUrl;
+          applyPageBackgrounds(e.data);
+          setLanguage(currentLang);
+        }
+      });
+
       window.onload = () => {
         fetch('./content.json')
           .then(r => r.json())
           .then(data => {
             content = data;
-            if (data.formUrl) {
-              document.getElementById('rsvp-form').action = data.formUrl;
-            }
+            if (data.formUrl) document.getElementById('rsvp-form').action = data.formUrl;
+            applyPageBackgrounds(data);
             setLanguage('en');
           });
       };
