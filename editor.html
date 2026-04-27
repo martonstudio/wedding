@@ -1144,6 +1144,7 @@ We can't wait to celebrate with you!</textarea
         });
         if (window.innerWidth <= 768) {
           workspace.classList.toggle("preview-visible", !showEdit);
+          if (!showEdit) update(); // re-send content now that iframe is visible
         } else {
           sidebar.classList.toggle("collapsed", !showEdit);
         }
