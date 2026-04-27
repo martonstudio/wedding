@@ -595,7 +595,7 @@
 
         document.getElementById('f-language').value = lang;
         document.title = `${d.name1} & ${d.name2}`;
-        setTimeout(fitAlbumTitle, 0);
+        document.fonts.ready.then(fitAlbumTitle);
       }
 
       function goToPage(index) {
