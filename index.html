@@ -76,10 +76,12 @@
         align-items: flex-start;
       }
       .album-label {
-        font-size: 0.62rem;
-        letter-spacing: 0.65em;
+        display: block;
+        white-space: nowrap;
         text-transform: uppercase;
-        opacity: 0.65;
+        letter-spacing: 0.06em;
+        opacity: 0.72;
+        line-height: 1;
       }
       .album-names {
         font-family: var(--font-display);
@@ -552,6 +554,21 @@
       let currentLang = 'en';
       let currentPage = 0;
 
+      function fitAlbumTitle() {
+        const el = document.querySelector('.album-label');
+        if (!el) return;
+        const maxW = el.parentElement.clientWidth;
+        let lo = 8, hi = 600;
+        el.style.fontSize = hi + 'px';
+        while (hi - lo > 1) {
+          const mid = (lo + hi) / 2;
+          el.style.fontSize = mid + 'px';
+          if (el.scrollWidth <= maxW) lo = mid; else hi = mid;
+        }
+        el.style.fontSize = lo + 'px';
+      }
+      window.addEventListener('resize', fitAlbumTitle);
+
       function setLanguage(lang) {
         currentLang = lang;
         const d = content[lang];
@@ -578,6 +595,7 @@
 
         document.getElementById('f-language').value = lang;
         document.title = `${d.name1} & ${d.name2}`;
+        setTimeout(fitAlbumTitle, 0);
       }
 
       function goToPage(index) {
