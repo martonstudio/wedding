@@ -92,48 +92,48 @@
     "hungaryTitle": "Az Esküvő",
     "hungaryText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.\n\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "sydneyLabel": "Sydney",
-    "sydneyTitle": "Sydney-i Ünneplés",
+    "sydneyTitle": "Sydney-i Ünnepség",
     "sydneyText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "rsvpLabel": "Csatlakozz Hozzánk",
-    "rsvpTitle": "Jössz?",
+    "rsvpTitle": "Eljössz?",
     "btnYes": "Örömmel elfogadom",
     "btnNo": "Sajnos nem tudok jönni",
-    "tyMsg": "Alig várjuk az ünneplést!",
+    "tyMsg": "Alig várjuk, hogy együtt ünnepeljünk!",
     "thankYouLabel": "Találkozunk",
     "thankYouTitle": "Köszönjük, hogy velünk ünnepelsz",
-    "thankYouText": "Nagyon örülünk, hogy csatlakozol hozzánk. Hamarosan küldünk minden szükséges információt — szállás, megközelítés, program.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "thankYouText": "Nagyon örülünk, hogy csatlakozol hozzánk. Hamarosan megküldjük az összes szükséges információt — hol szálljanak meg, hogyan juthatnak el hozzánk, és mire számíthatnak.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "eyebrow": "ÖSSZEHÁZASODUNK",
-    "dateDisplay": "2026. Október 10. Szombat",
-    "venueAddress": "Tokaji Borvidék\nMád",
-    "dressTitle": "Koktélruha",
-    "dressNote": "Félhivatalos öltözet. A kényelem fontos a falusi sétákhoz!",
-    "gettingThere": "Autóval vagy vonattal Budapestre, onnan 2,5 óra Mád.",
-    "stayIntro": "Javasoljuk, hogy szálljanak meg a mádi vendégházakban.",
-    "bookingCode": "Sonya & Márton Esküvő",
-    "rsvpIntro": "Kérjük, jelezze részvételét.",
-    "btnNavRSVP": "Válasz küldése",
+    "dateDisplay": "2026. október 10., szombat",
+    "venueAddress": "Tokaji Borvidék\nMagyarország",
+    "dressTitle": "Koktélöltözet",
+    "dressNote": "Félhivatalos stílus. A kényelem fontos a falusi sétákhoz!",
+    "gettingThere": "Repülővel Budapestre, majd 2,5 óra autóval vagy vonattal Mádig.",
+    "stayIntro": "Javasoljuk, hogy a helyi mádi vendégházakban szálljatok meg.",
+    "bookingCode": "Szonja & Márton Esküvő",
+    "rsvpIntro": "Kérjük, jelezd, ha részt tudsz venni Magyarországon, Sydney-ben vagy mindkét helyen!",
+    "btnNavRSVP": "Kérjük, válaszolj",
     "schedule": [
       {
         "time": "Csütörtök",
-        "title": "Érkezés",
-        "desc": "Üdvözlő vacsora"
+        "title": "Érkezés és fogadás",
+        "desc": "Beköltözés a faluba, hagyományos vacsora"
       },
       {
         "time": "Péntek",
-        "title": "Bor és Túra",
-        "desc": "Túra a szőlőben és borkóstoló"
+        "title": "Bor és túra",
+        "desc": "Séta a szőlőhegyen, majd borkóstoló"
       },
       {
         "time": "Szombat",
-        "title": "Esküvő",
-        "desc": "A nagy nap"
+        "title": "Az esküvő napja",
+        "desc": "Szertartás és ünnepség Mád szívében"
       }
     ],
     "stay": [
       {
-        "name": "Helyi Vendégház",
+        "name": "Mad Garden Vendégház",
         "tag": "Ajánlott",
-        "desc": "Autentikus szálláshelyek a faluban."
+        "desc": "Gyönyörű hagyományos ház modern elemekkel. 5 perc séta."
       }
     ],
     "customSections": []
@@ -142,59 +142,64 @@
     "name1": "Соня",
     "name2": "Мартон",
     "page1Label": "Свадьба",
-    "heroLocation": "Мад · Токайский регион",
+    "heroLocation": "Мад · Токайский винный регион",
     "dateShort": "10 · X · 2026",
     "heroImage": "/assets/images/hero-wedding.jpg",
-    "storyLabel": "Наша История",
+    "storyLabel": "Наша история",
     "storyText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-    "locationLabel": "Где и Когда",
-    "locationIntro": "Два праздника",
+    "locationLabel": "Где и когда",
+    "locationIntro": "Два торжества",
     "hungaryDate": "10 октября 2026",
-    "venueName": "Мад, Токайский регион",
+    "venueName": "Мад, Токайский винный регион",
     "sydneyDate": "Ноябрь 2026",
     "sydneyVenue": "Сидней, Австралия",
-    "locationNote": "Приходите на один — или на оба",
+    "locationNote": "Приходите на одно — или на оба",
     "hungaryLabel": "Венгрия",
-    "hungaryTitle": "Свадьба",
+    "hungaryTitle": "Свадебная церемония",
     "hungaryText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.\n\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
     "sydneyLabel": "Сидней",
-    "sydneyTitle": "Сидней",
+    "sydneyTitle": "Торжество в Сиднее",
     "sydneyText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
     "rsvpLabel": "Присоединяйтесь",
     "rsvpTitle": "Вы придёте?",
     "btnYes": "С радостью принимаю",
     "btnNo": "К сожалению, не смогу",
-    "tyMsg": "Мы с нетерпением ждём встречи!",
+    "tyMsg": "Не можем дождаться встречи с вами!",
     "thankYouLabel": "До встречи",
     "thankYouTitle": "Спасибо, что разделите с нами этот праздник",
-    "thankYouText": "Мы так рады, что вы будете с нами. Скоро пришлём всё необходимое — где остановиться, как добраться и что ожидать.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "thankYouText": "Мы так рады, что вы будете с нами. Скоро пришлём всё необходимое — где остановиться, как добраться и что ожидать.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     "eyebrow": "МЫ ЖЕНИМСЯ",
     "dateDisplay": "Суббота, 10 октября 2026 г.",
     "venueAddress": "Токайский винный регион\nВенгрия",
     "dressTitle": "Коктейльный дресс-код",
-    "dressNote": "Полуформально. Комфорт важен для прогулок!",
-    "gettingThere": "Перелет в Будапешт, затем 2,5 часа до Мада.",
-    "stayIntro": "Мы рекомендуем остановиться в местных гостевых домах в Маде.",
+    "dressNote": "Полуформальный стиль. Удобство важно для прогулок по деревне!",
+    "gettingThere": "Перелёт до Будапешта, затем 2,5 часа на машине или поезде до Мада.",
+    "stayIntro": "Рекомендуем остановиться в местных гостевых домах в Маде.",
     "bookingCode": "Свадьба Сони и Мартона",
-    "rsvpIntro": "Пожалуйста, дайте нам знать.",
-    "btnNavRSVP": "Ответить на приглашение",
+    "rsvpIntro": "Пожалуйста, сообщите нам, сможете ли вы присоединиться — в Венгрии, Сиднее или на обоих торжествах!",
+    "btnNavRSVP": "Пожалуйста, ответьте",
     "schedule": [
       {
         "time": "Четверг",
-        "title": "Приезд",
-        "desc": "Ужин"
+        "title": "Прибытие и знакомство",
+        "desc": "Заселение, традиционный ужин"
+      },
+      {
+        "time": "Пятница",
+        "title": "Вино и прогулка",
+        "desc": "Прогулка по виноградникам и дегустация вин"
       },
       {
         "time": "Суббота",
-        "title": "Свадьба",
-        "desc": "Основной день"
+        "title": "День свадьбы",
+        "desc": "Церемония и праздник в сердце Мада"
       }
     ],
     "stay": [
       {
-        "name": "Гостевой дом",
-        "tag": "В деревне",
-        "desc": "В пешей доступности."
+        "name": "Mad Garden Гостевой дом",
+        "tag": "Рекомендуем",
+        "desc": "Красивый традиционный дом с современными акцентами. 5 минут пешком."
       }
     ],
     "customSections": []
