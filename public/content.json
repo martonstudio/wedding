@@ -7,16 +7,14 @@
   "bgPage6": "",
   "bgPage7": "",
   "en": {
-    "name1": "Sonya",
+    "name1": "Szonja",
     "name2": "Marton",
     "page1Label": "Wedding",
     "heroLocation": "Mád · Tokaj Wine Region",
     "dateShort": "10 · X · 2026",
     "heroImage": "/assets/images/hero-wedding.jpg",
-
     "storyLabel": "Our Story",
     "storyText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-
     "locationLabel": "Where & When",
     "locationIntro": "Two celebrations",
     "hungaryDate": "10 October 2026",
@@ -24,25 +22,20 @@
     "sydneyDate": "November 2026",
     "sydneyVenue": "Sydney, Australia",
     "locationNote": "Join us for one — or both",
-
     "hungaryLabel": "Hungary",
     "hungaryTitle": "The Wedding",
     "hungaryText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.\n\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.",
-
     "sydneyLabel": "Sydney",
     "sydneyTitle": "Sydney Celebration",
     "sydneyText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-
     "rsvpLabel": "Join Us",
     "rsvpTitle": "Are you coming?",
     "btnYes": "Joyfully accepts",
     "btnNo": "Regretfully declines",
     "tyMsg": "We can't wait to celebrate with you!",
-
     "thankYouLabel": "See You There",
     "thankYouTitle": "Thank you for celebrating with us",
     "thankYouText": "We are so happy you'll be joining us. We'll be in touch soon with everything you need — where to stay, how to get there, and what to expect.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-
     "eyebrow": "WE ARE GETTING MARRIED",
     "dateDisplay": "Saturday, 10th of October, 2026",
     "venueAddress": "Tokaj Wine Region\nHungary",
@@ -54,12 +47,28 @@
     "rsvpIntro": "Please let us know if you can join us in Hungary, Sydney, or both!",
     "btnNavRSVP": "Kindly RSVP",
     "schedule": [
-      { "time": "Thursday", "title": "Arrival & Welcome", "desc": "Settle into the village, traditional dinner" },
-      { "time": "Friday", "title": "Wine & Hike", "desc": "Hiking in the vineyards followed by wine tasting" },
-      { "time": "Saturday", "title": "Wedding Day", "desc": "Ceremony and celebration in the heart of Mád" }
+      {
+        "time": "Thursday",
+        "title": "Arrival & Welcome",
+        "desc": "Settle into the village, traditional dinner"
+      },
+      {
+        "time": "Friday",
+        "title": "Wine & Hike",
+        "desc": "Hiking in the vineyards followed by wine tasting"
+      },
+      {
+        "time": "Saturday",
+        "title": "Wedding Day",
+        "desc": "Ceremony and celebration in the heart of Mád"
+      }
     ],
     "stay": [
-      { "name": "Mad Garden Guesthouse", "tag": "Recommended", "desc": "Beautiful traditional house with a modern twist. 5 min walk." }
+      {
+        "name": "Mad Garden Guesthouse",
+        "tag": "Recommended",
+        "desc": "Beautiful traditional house with a modern twist. 5 min walk."
+      }
     ],
     "customSections": []
   },
@@ -70,10 +79,8 @@
     "heroLocation": "Mád · Tokaji Borvidék",
     "dateShort": "2026. X. 10.",
     "heroImage": "/assets/images/hero-wedding.jpg",
-
     "storyLabel": "A Történetünk",
     "storyText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-
     "locationLabel": "Hol és Mikor",
     "locationIntro": "Két ünneplés",
     "hungaryDate": "2026. október 10.",
@@ -81,25 +88,20 @@
     "sydneyDate": "2026. november",
     "sydneyVenue": "Sydney, Ausztrália",
     "locationNote": "Gyere el az egyikre — vagy mindkettőre",
-
     "hungaryLabel": "Magyarország",
     "hungaryTitle": "Az Esküvő",
     "hungaryText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.\n\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-
     "sydneyLabel": "Sydney",
     "sydneyTitle": "Sydney-i Ünneplés",
     "sydneyText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-
     "rsvpLabel": "Csatlakozz Hozzánk",
     "rsvpTitle": "Jössz?",
     "btnYes": "Örömmel elfogadom",
     "btnNo": "Sajnos nem tudok jönni",
     "tyMsg": "Alig várjuk az ünneplést!",
-
     "thankYouLabel": "Találkozunk",
     "thankYouTitle": "Köszönjük, hogy velünk ünnepelsz",
     "thankYouText": "Nagyon örülünk, hogy csatlakozol hozzánk. Hamarosan küldünk minden szükséges információt — szállás, megközelítés, program.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit.",
-
     "eyebrow": "ÖSSZEHÁZASODUNK",
     "dateDisplay": "2026. Október 10. Szombat",
     "venueAddress": "Tokaji Borvidék\nMád",
@@ -111,12 +113,28 @@
     "rsvpIntro": "Kérjük, jelezze részvételét.",
     "btnNavRSVP": "Válasz küldése",
     "schedule": [
-      { "time": "Csütörtök", "title": "Érkezés", "desc": "Üdvözlő vacsora" },
-      { "time": "Péntek", "title": "Bor és Túra", "desc": "Túra a szőlőben és borkóstoló" },
-      { "time": "Szombat", "title": "Esküvő", "desc": "A nagy nap" }
+      {
+        "time": "Csütörtök",
+        "title": "Érkezés",
+        "desc": "Üdvözlő vacsora"
+      },
+      {
+        "time": "Péntek",
+        "title": "Bor és Túra",
+        "desc": "Túra a szőlőben és borkóstoló"
+      },
+      {
+        "time": "Szombat",
+        "title": "Esküvő",
+        "desc": "A nagy nap"
+      }
     ],
     "stay": [
-      { "name": "Helyi Vendégház", "tag": "Ajánlott", "desc": "Autentikus szálláshelyek a faluban." }
+      {
+        "name": "Helyi Vendégház",
+        "tag": "Ajánlott",
+        "desc": "Autentikus szálláshelyek a faluban."
+      }
     ],
     "customSections": []
   },
@@ -127,10 +145,8 @@
     "heroLocation": "Мад · Токайский регион",
     "dateShort": "10 · X · 2026",
     "heroImage": "/assets/images/hero-wedding.jpg",
-
     "storyLabel": "Наша История",
     "storyText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.\n\nDuis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
-
     "locationLabel": "Где и Когда",
     "locationIntro": "Два праздника",
     "hungaryDate": "10 октября 2026",
@@ -138,25 +154,20 @@
     "sydneyDate": "Ноябрь 2026",
     "sydneyVenue": "Сидней, Австралия",
     "locationNote": "Приходите на один — или на оба",
-
     "hungaryLabel": "Венгрия",
     "hungaryTitle": "Свадьба",
     "hungaryText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor.\n\nExcepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
-
     "sydneyLabel": "Сидней",
     "sydneyTitle": "Сидней",
     "sydneyText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
-
     "rsvpLabel": "Присоединяйтесь",
     "rsvpTitle": "Вы придёте?",
     "btnYes": "С радостью принимаю",
     "btnNo": "К сожалению, не смогу",
     "tyMsg": "Мы с нетерпением ждём встречи!",
-
     "thankYouLabel": "До встречи",
     "thankYouTitle": "Спасибо, что разделите с нами этот праздник",
     "thankYouText": "Мы так рады, что вы будете с нами. Скоро пришлём всё необходимое — где остановиться, как добраться и что ожидать.\n\nLorem ipsum dolor sit amet, consectetur adipiscing elit.",
-
     "eyebrow": "МЫ ЖЕНИМСЯ",
     "dateDisplay": "Суббота, 10 октября 2026 г.",
     "venueAddress": "Токайский винный регион\nВенгрия",
@@ -168,11 +179,23 @@
     "rsvpIntro": "Пожалуйста, дайте нам знать.",
     "btnNavRSVP": "Ответить на приглашение",
     "schedule": [
-      { "time": "Четверг", "title": "Приезд", "desc": "Ужин" },
-      { "time": "Суббота", "title": "Свадьба", "desc": "Основной день" }
+      {
+        "time": "Четверг",
+        "title": "Приезд",
+        "desc": "Ужин"
+      },
+      {
+        "time": "Суббота",
+        "title": "Свадьба",
+        "desc": "Основной день"
+      }
     ],
     "stay": [
-      { "name": "Гостевой дом", "tag": "В деревне", "desc": "В пешей доступности." }
+      {
+        "name": "Гостевой дом",
+        "tag": "В деревне",
+        "desc": "В пешей доступности."
+      }
     ],
     "customSections": []
   }
