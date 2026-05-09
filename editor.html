@@ -330,10 +330,6 @@
         background: #fff;
         width: 100%;
         height: 100%;
-        max-width: 1100px;
-      }
-      iframe#preview.mobile {
-        max-width: 390px;
       }
 
       .save-toast {
@@ -1033,23 +1029,7 @@ We can't wait to celebrate with you!</textarea
 
       <div class="preview-wrap">
         <div class="preview-bar">
-          <div class="preview-url">live-preview/index.html</div>
-          <div style="display: flex; gap: 0.5rem">
-            <button
-              onclick="
-                document.getElementById('preview').classList.remove('mobile')
-              "
-            >
-              Desktop
-            </button>
-            <button
-              onclick="
-                document.getElementById('preview').classList.add('mobile')
-              "
-            >
-              Mobile
-            </button>
-          </div>
+          <div class="preview-url">live-preview</div>
         </div>
         <div class="preview-frame-wrap">
           <iframe id="preview" src="./index.html" onload="update()"></iframe>

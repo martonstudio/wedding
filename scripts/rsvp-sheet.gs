@@ -9,9 +9,16 @@
 const SHEET_NAME = 'WEDDING INVITES';
 const NOTIFY = ['marton.papai@gmail.com', 'sobutorina@gmail.com'];
 
+function testSheet() {
+  const ss = SpreadsheetApp.openById('15wwFZyLfldqtN6Bk9FzcS29o4h7OM4AJpLXlJsLXRlE');
+  const sheet = ss.getSheetByName('WEDDING INVITES') || ss.insertSheet('WEDDING INVITES');
+  sheet.appendRow(['TEST', 'test@test.com', 'yes', '—', '1', 'en']);
+  Logger.log('Row written successfully');
+}
+
 function doPost(e) {
   try {
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const ss = SpreadsheetApp.openById('15wwFZyLfldqtN6Bk9FzcS29o4h7OM4AJpLXlJsLXRlE');
     let sheet = ss.getSheetByName(SHEET_NAME);
     if (!sheet) {
       sheet = ss.insertSheet(SHEET_NAME);
