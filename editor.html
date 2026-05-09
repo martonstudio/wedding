@@ -300,36 +300,16 @@
         background: #000;
       }
 
-      .preview-bar {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-        padding: 0.6rem 1rem;
-        background: #111;
-        border-bottom: 1px solid var(--border);
-      }
-
-      .preview-url {
+.preview-frame-wrap {
         flex: 1;
-        background: #0a0a0a;
-        padding: 0.35rem 0.75rem;
-        font-size: 0.75rem;
-        color: var(--mid);
-        font-family: monospace;
-      }
-
-      .preview-frame-wrap {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
         overflow: hidden;
-        padding: 0;
       }
 
       iframe#preview {
         border: none;
         background: #000;
+        width: 100%;
+        height: 100%;
       }
 
       .save-toast {
@@ -1027,9 +1007,6 @@ We can't wait to celebrate with you!</textarea
       </div>
 
       <div class="preview-wrap">
-        <div class="preview-bar">
-          <div class="preview-url">live-preview</div>
-        </div>
         <div class="preview-frame-wrap">
           <iframe id="preview" src="./index.html" onload="update()"></iframe>
         </div>
@@ -1115,19 +1092,6 @@ We can't wait to celebrate with you!</textarea
         reader.readAsDataURL(file);
       }
 
-      function sizePreview() {
-        const wrap = document.querySelector('.preview-frame-wrap');
-        const iframe = document.getElementById('preview');
-        if (!wrap || !iframe) return;
-        const wH = wrap.clientHeight;
-        const wW = wrap.clientWidth;
-        let h = wH, w = h * 9 / 16;
-        if (w > wW) { w = wW; h = w * 16 / 9; }
-        iframe.style.width = w + 'px';
-        iframe.style.height = h + 'px';
-      }
-      window.addEventListener('resize', sizePreview);
-
       function setPanel(showEdit) {
         const sidebar = document.getElementById("sidebar");
         const workspace = document.querySelector(".workspace");
@@ -1140,7 +1104,6 @@ We can't wait to celebrate with you!</textarea
         } else {
           sidebar.classList.toggle("collapsed", !showEdit);
         }
-        setTimeout(sizePreview, 350); // after sidebar transition
       }
 
       function showSection(id) {
@@ -1404,7 +1367,6 @@ We can't wait to celebrate with you!</textarea
               }
             }
             loadContent();
-            sizePreview();
           });
       };
     </script>
