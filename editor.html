@@ -324,16 +324,12 @@
         justify-content: center;
         align-items: center;
         overflow: hidden;
-        padding: 0.5rem;
+        padding: 0;
       }
 
       iframe#preview {
         border: none;
         background: #000;
-        max-height: 100%;
-        max-width: 100%;
-        aspect-ratio: 9 / 16;
-        height: 100%;
       }
 
       .save-toast {
@@ -483,7 +479,6 @@
         }
 
         .preview-frame-wrap { padding: 0; }
-        iframe#preview, iframe#preview.mobile { max-width: 100%; }
       }
     </style>
   </head>
@@ -1120,6 +1115,19 @@ We can't wait to celebrate with you!</textarea
         reader.readAsDataURL(file);
       }
 
+      function sizePreview() {
+        const wrap = document.querySelector('.preview-frame-wrap');
+        const iframe = document.getElementById('preview');
+        if (!wrap || !iframe) return;
+        const wH = wrap.clientHeight;
+        const wW = wrap.clientWidth;
+        let h = wH, w = h * 9 / 16;
+        if (w > wW) { w = wW; h = w * 16 / 9; }
+        iframe.style.width = w + 'px';
+        iframe.style.height = h + 'px';
+      }
+      window.addEventListener('resize', sizePreview);
+
       function setPanel(showEdit) {
         const sidebar = document.getElementById("sidebar");
         const workspace = document.querySelector(".workspace");
@@ -1128,10 +1136,11 @@ We can't wait to celebrate with you!</textarea
         });
         if (window.innerWidth <= 768) {
           workspace.classList.toggle("preview-visible", !showEdit);
-          if (!showEdit) update(); // re-send content now that iframe is visible
+          if (!showEdit) update();
         } else {
           sidebar.classList.toggle("collapsed", !showEdit);
         }
+        setTimeout(sizePreview, 350); // after sidebar transition
       }
 
       function showSection(id) {
@@ -1395,6 +1404,7 @@ We can't wait to celebrate with you!</textarea
               }
             }
             loadContent();
+            sizePreview();
           });
       };
     </script>
