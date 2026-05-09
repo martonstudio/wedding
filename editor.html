@@ -322,14 +322,17 @@
         flex: 1;
         display: flex;
         justify-content: center;
-        padding: 1.5rem;
+        align-items: stretch;
+        overflow: hidden;
+        padding: 0;
       }
 
       iframe#preview {
         border: none;
-        background: #fff;
-        width: 100%;
+        background: #000;
         height: 100%;
+        width: auto;
+        aspect-ratio: 9 / 16;
       }
 
       .save-toast {
