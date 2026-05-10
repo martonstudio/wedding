@@ -436,7 +436,7 @@
       }
       .pat-link:hover { color: var(--gold); }
 
-      @media (max-width: 768px) {
+      @media (max-width: 480px) {
         .topbar-logo { display: none; }
         .btn-export { display: none; }
         .topbar { gap: 0.5rem; padding: 0.6rem 0.75rem; }
@@ -1098,7 +1098,7 @@ We can't wait to celebrate with you!</textarea
         document.querySelectorAll(".preview-toggle button").forEach((b, i) => {
           b.classList.toggle("active", showEdit ? i === 0 : i === 1);
         });
-        if (window.innerWidth <= 768) {
+        if (window.innerWidth <= 480) {
           workspace.classList.toggle("preview-visible", !showEdit);
           if (!showEdit) update();
         } else {
