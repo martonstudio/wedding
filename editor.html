@@ -121,27 +121,24 @@
 
       /* ── LAYOUT ── */
       .workspace {
-        display: flex;
-        flex-direction: row;
+        display: grid;
+        grid-template-columns: 380px 1fr;
         flex: 1;
         overflow: hidden;
       }
 
       /* ── SIDEBAR ── */
       .sidebar {
-        width: 380px;
-        flex-shrink: 0;
         background: var(--panel);
         border-right: 1px solid var(--border);
         display: flex;
         flex-direction: column;
         overflow: hidden;
-        transition: width 0.3s ease;
+        min-width: 0;
       }
 
       .sidebar.collapsed {
-        width: 0;
-        border: none;
+        display: none;
       }
 
       /* Language Switcher */
@@ -442,24 +439,15 @@
         .btn-export { display: none; }
         .topbar { gap: 0.5rem; padding: 0.6rem 0.75rem; }
 
-        .workspace { flex-direction: column; }
-
-        .sidebar {
-          width: 100% !important;
-          flex: 1;
-        }
-        .sidebar.collapsed { width: 100% !important; }
+        .workspace { grid-template-columns: 1fr; grid-template-rows: 1fr; }
 
         .preview-wrap { display: none; }
 
         .workspace.preview-visible .sidebar { display: none; }
         .workspace.preview-visible .preview-wrap {
           display: flex;
-          width: 100%;
           flex: 1;
         }
-
-        .preview-frame-wrap { padding: 0; }
       }
     </style>
   </head>
