@@ -38,3 +38,9 @@ temp/
 # Backup files
 00_old/
 *.bak
+
+# Local reference files (not deployed)
+assets/
+scripts/
+public/content.json
+*.png
