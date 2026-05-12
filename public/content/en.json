@@ -1,0 +1,37 @@
+{
+  "page1Label": "Wedding",
+  "name1": "Sonya",
+  "name2": "Marton",
+  "dateShort": "",
+  "heroLocation": "",
+  "storyLabel": "Our Story",
+  "storyText": "As our friend or family, you probably heard a lot about our whirlwind romance so we don't need to write a novel. We met in Sri Lanka just before Christmas 2023, and after a year, 3 continents*, traveling to 9 countries so we can spend time together, we finally settled down into a very boring and uneventful life in Sydney, Australia. \n\n",
+  "storyText2": "*2 Continents, if you use the correct geographic definition (Sonya)",
+  "announceLabel": "",
+  "eyebrow": "WE ARE GETTING MARRIED",
+  "locationIntro": "Now, we are happy to announce that we're getting married, and would love you to join us and celebrate.",
+  "locationLabel": "",
+  "locationBody": "To make things easier (or more complicated) for our international family and friends, we will organise two weddings: one in a beautiful village in the North East of Hungary, and one in Sydney, Australia. And you're welcome to join us for one, or both.\n\n\n\n\n\n",
+  "hungaryLabel": "Hungary",
+  "hungaryDate": "10 October 2026",
+  "venueName": "Mád, Tokaj Wine Region",
+  "hungaryText": "Mád village is a hidden gem in the historic wine region of Tokaj. We hope you can not just attend the wedding, but spend at least a few days with us exploring the region, tasting wine, beautiful hikes and a traditional wine harvest.",
+  "sydneyLabel": "Sydney",
+  "sydneyDate": "14 November 2026",
+  "sydneyVenue": "Sydney, Australia",
+  "sydneyText": "The Sydney wedding will be on a hill with a view, or the local bowling club. We will let you know soon.",
+  "locationNote": "Join us for one — or both",
+  "rsvpLabel": "Join Us",
+  "rsvpTitle": "Are you coming?",
+  "btnYes": "Joyfully accepts",
+  "btnNo": "Regretfully declines",
+  "btnNavRSVP": "Kindly RSVP",
+  "thankYouLabel": "See You There",
+  "thankYouTitle": "Thank you for celebrating with us",
+  "thankYouText": "We are so happy you'll be joining us. We'll be in touch soon with everything you need — where to stay, how to get there, and what to expect.",
+  "_styles": {
+    "page1Label": {
+      "weight": "700"
+    }
+  }
+}
