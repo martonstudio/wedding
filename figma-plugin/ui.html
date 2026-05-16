@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: Inter, system-ui, sans-serif;
+    background: #1e1e1e;
+    color: #ccc;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  h2 {
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .server-url {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .server-url label {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+  .server-url input {
+    flex: 1;
+    background: #2c2c2c;
+    border: 1px solid #444;
+    border-radius: 4px;
+    color: #fff;
+    padding: 4px 8px;
+    font-size: 12px;
+  }
+  button {
+    background: #b8934a;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 0.5px;
+  }
+  button:hover { background: #caa55c; }
+  button:disabled { opacity: 0.5; cursor: not-allowed; }
+  #status {
+    font-size: 12px;
+    min-height: 32px;
+    line-height: 1.4;
+  }
+  .ok { color: #6fcf97; }
+  .err { color: #eb5757; }
+</style>
+</head>
+<body>
+  <h2>Push to Preview</h2>
+  <div class="server-url">
+    <label>Server:</label>
+    <input id="url" type="text" value="http://localhost:3000/_sync" />
+  </div>
+  <button id="push" onclick="doPush()">Push SVGs to Preview</button>
+  <div id="status">Ready. Make sure Vite dev server is running.</div>
+
+  <script>
+    const statusEl = document.getElementById('status');
+    const pushBtn = document.getElementById('push');
+
+    function doPush() {
+      pushBtn.disabled = true;
+      statusEl.className = '';
+      statusEl.textContent = 'Exporting frames from Figma…';
+      parent.postMessage({ pluginMessage: { type: 'push' } }, '*');
+    }
+
+    onmessage = async (event) => {
+      const msg = event.data.pluginMessage;
+      if (!msg) return;
+
+      if (msg.type === 'export-done') {
+        const count = msg.count;
+        statusEl.textContent = `Exported ${count} SVGs. Sending to server…`;
+
+        try {
+          const url = document.getElementById('url').value;
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ svgs: msg.svgs }),
+          });
+
+          if (!res.ok) throw new Error(`Server returned ${res.status}`);
+          const data = await res.json();
+          statusEl.className = 'ok';
+          statusEl.textContent = `Done — ${data.count} SVGs saved to disk.`;
+        } catch (err) {
+          statusEl.className = 'err';
+          statusEl.textContent = `Send failed: ${err.message}`;
+        }
+        pushBtn.disabled = false;
+      }
+
+      if (msg.type === 'export-error') {
+        statusEl.className = 'err';
+        statusEl.textContent = `Export error: ${msg.error}`;
+        pushBtn.disabled = false;
+      }
+    };
+  </script>
+</body>
+</html>

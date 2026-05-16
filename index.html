@@ -1,33 +1,859 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex,nofollow" />
-    <title>Coming Soon</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=Tenor+Sans&display=swap" rel="stylesheet" />
-    <style>
-      *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-      body {
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #1a1a1a;
-        color: #e8e4dc;
-        font-family: "Tenor Sans", sans-serif;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <title>Sonya & Marton — Wedding</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold: #B8934A;
+      --dark: #181715;
+      --cream: #F5F2EC;
+      --white: #FFFFFF;
+      --dark-btn: #262421;
+    }
+
+    html, body { height: 100%; overflow: hidden; background: #000; }
+
+    /* ── DESKTOP: 9:16 centered with blurred bg ── */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #000;
+    }
+    #bg-blur {
+      position: fixed; inset: 0; z-index: 0;
+      background: url('./images/01_COVER.jpg') center/cover no-repeat;
+      filter: blur(40px) brightness(0.3);
+      transform: scale(1.1);
+    }
+    #phone {
+      position: relative; z-index: 1;
+      width: 100vw; height: 100vh;
+      max-width: 540px; max-height: 960px;
+      overflow: hidden;
+    }
+    @media (max-width: 600px) {
+      #bg-blur { display: none; }
+      #phone { max-width: none; max-height: none; }
+    }
+
+    /* ── SCROLL SNAP ── */
+    #scroller {
+      width: 100%; height: 100%;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    #scroller::-webkit-scrollbar { display: none; }
+
+    .page {
+      width: 100%; height: 100%;
+      scroll-snap-align: start;
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* ── SVG PAGES (1–4) ── */
+    .page .bg {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .page .overlay {
+      position: absolute; inset: 0;
+      background: #000;
+      z-index: 1;
+    }
+    .page .svg-layer {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      z-index: 2;
+    }
+
+    /* Per-page overlay opacities from Figma */
+    #page-cover .overlay { opacity: 0.48; }
+    #page-story .overlay { opacity: 0.10; }
+    #page-announcement .overlay { opacity: 0.15; }
+    #page-location .overlay { opacity: 0.30; }
+
+    /* Default all pages to black — photos go on top when added */
+    .page { background-color: #000; }
+
+    /* ── PAGE 5: RSVP ── */
+    #page-rsvp {
+      background: var(--dark);
+      display: flex;
+      flex-direction: column;
+    }
+    .rsvp-gold-bar {
+      width: 100%; height: 6px;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+    .rsvp-content {
+      flex: 1;
+      overflow-y: auto;
+      padding: 0 7.4%; /* 80/1080 = 7.4% */
+      display: flex;
+      flex-direction: column;
+    }
+    .rsvp-heading {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      color: var(--white);
+      font-size: clamp(2.5rem, 10vw, 4.5rem);
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      margin-top: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .rsvp-sep {
+      width: 100%; height: 1px;
+      background: rgba(255,255,255,0.1);
+      margin: 0.8rem 0;
+    }
+
+    /* Form fields — flat underline style */
+    .form-row { margin-bottom: 1.2rem; }
+    .form-row label {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      color: var(--white);
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 0.3rem;
+    }
+    .form-row input[type="text"],
+    .form-row input[type="email"] {
+      width: 100%;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+      color: var(--white);
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      padding: 0.5rem 0;
+      outline: none;
+    }
+    .form-row input::placeholder { color: rgba(255,255,255,0.4); }
+    .form-row input:focus { border-bottom-color: var(--gold); }
+
+    /* Attend toggle */
+    .attend-toggle {
+      display: flex; gap: 0.5rem;
+      margin-top: 0.4rem;
+    }
+    .attend-btn {
+      flex: 1;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.8rem;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: var(--dark-btn);
+      color: var(--white);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .attend-btn.active-yes {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--white);
+    }
+    .attend-btn.active-no {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--white);
+    }
+
+    /* Event checkboxes */
+    .event-opts { display: flex; flex-direction: column; gap: 0.6rem; margin-top: 0.4rem; }
+    .event-opt {
+      display: flex; align-items: center; gap: 0.8rem;
+      cursor: pointer;
+      -webkit-user-select: none; user-select: none;
+    }
+    .event-opt input[type="checkbox"] { display: none; }
+    .event-opt::before {
+      content: '';
+      width: 1.4rem; height: 1.4rem;
+      border: 1px solid rgba(255,255,255,0.4);
+      flex-shrink: 0;
+    }
+    .event-opt.checked::before {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+    .event-opt span {
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      color: var(--white);
+    }
+
+    /* Guest count buttons */
+    .guest-btns {
+      display: flex; gap: 0.5rem;
+      margin-top: 0.4rem;
+    }
+    .guest-btn {
+      flex: 1;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      padding: 0.6rem;
+      background: var(--dark-btn);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--white);
+      cursor: pointer;
+      text-align: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .guest-btn.active {
+      background: var(--gold);
+      border-color: var(--gold);
+    }
+
+    /* Submit button */
+    .submit-btn {
+      width: 100%;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--gold);
+      border: none;
+      padding: 1rem;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .submit-btn:hover { opacity: 0.9; }
+    .submit-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .rsvp-footnote {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 0.85rem;
+      color: var(--white);
+      line-height: 1.55;
+      margin-top: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-error {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.8rem;
+      color: #eb5757;
+      display: none;
+      margin-bottom: 0.5rem;
+    }
+    .form-error.visible { display: block; }
+
+    /* ── PAGE 6: CONFIRMATION ── */
+    #page-confirm {
+      background: var(--dark);
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem;
+    }
+    #page-confirm .confirm-title {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 8vw, 3.5rem);
+      color: var(--white);
+      line-height: 0.9;
+      margin-bottom: 1rem;
+    }
+    #page-confirm .confirm-text {
+      font-family: 'Lato', sans-serif;
+      font-weight: 300;
+      font-size: 1rem;
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    /* ── NAV DOTS ── */
+    .dots {
+      position: fixed;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    @media (min-width: 601px) {
+      .dots { right: calc(50% - 270px + 12px); }
+    }
+    .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.3);
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      transition: background 0.2s;
+    }
+    .dot.active { background: var(--gold); }
+
+    /* ── LANGUAGE SWITCHER ── */
+    .lang-switch {
+      position: fixed;
+      top: 14px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex; gap: 4px;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 3px;
+    }
+    @media (min-width: 601px) {
+      .lang-switch {
+        left: calc(50%);
       }
-      h1 {
-        font-family: "Cormorant Garamond", serif;
-        font-weight: 300;
-        font-size: clamp(2rem, 6vw, 4rem);
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        opacity: 0.6;
+    }
+    .lang-btn {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.5);
+      background: transparent;
+      border: none;
+      padding: 4px 10px;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: color 0.2s, background 0.2s;
+    }
+    .lang-btn.active {
+      color: var(--white);
+      background: rgba(255,255,255,0.15);
+    }
+
+    /* ── PUBLISH (localhost only) ── */
+    .publish-bar {
+      display: none;
+      position: fixed;
+      bottom: 14px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      gap: 6px;
+      align-items: center;
+    }
+    .publish-bar.visible { display: flex; }
+    .publish-btn {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+      background: var(--gold);
+      border: none;
+      padding: 6px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+    .publish-btn:hover { opacity: 0.85; }
+    .publish-btn:disabled { opacity: 0.4; cursor: wait; }
+    .publish-btn.settings {
+      background: rgba(255,255,255,0.12);
+      padding: 6px 10px;
+      font-size: 0.8rem;
+    }
+    .publish-status {
+      font-family: 'Lato', sans-serif;
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.7);
+      white-space: nowrap;
+    }
+    .publish-modal {
+      display: none;
+      position: fixed; inset: 0;
+      z-index: 30;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+    }
+    .publish-modal.visible { display: flex; }
+    .publish-modal-inner {
+      background: #1e1e1e;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 1.5rem;
+      width: 340px;
+      max-width: 90vw;
+    }
+    .publish-modal-inner h3 {
+      font-family: 'Oswald', sans-serif;
+      color: var(--white);
+      margin-bottom: 0.8rem;
+      font-size: 1rem;
+    }
+    .publish-modal-inner input {
+      width: 100%;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 4px;
+      color: var(--white);
+      font-family: 'Lato', sans-serif;
+      font-size: 0.85rem;
+      padding: 0.5rem;
+      margin-bottom: 0.8rem;
+    }
+    .publish-modal-inner input:focus { border-color: var(--gold); outline: none; }
+    .publish-modal-inner .modal-btns { display: flex; gap: 0.5rem; }
+    .publish-modal-inner .modal-btns button {
+      flex: 1;
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    .publish-modal-inner .modal-btns .save-btn { background: var(--gold); color: var(--white); }
+    .publish-modal-inner .modal-btns .cancel-btn { background: rgba(255,255,255,0.1); color: var(--white); }
+  </style>
+</head>
+<body>
+  <div id="bg-blur"></div>
+
+  <div id="phone">
+    <div id="scroller">
+      <!-- PAGE 1: COVER -->
+      <div class="page" id="page-cover">
+        <img class="bg" src="./images/01_COVER.jpg" alt="" />
+        <div class="overlay"></div>
+        <div class="svg-layer" id="svg-01"></div>
+      </div>
+
+      <!-- PAGE 2: STORY -->
+      <div class="page" id="page-story">
+        <img class="bg" src="./images/02_STORY.jpg" alt="" />
+        <div class="overlay"></div>
+        <div class="svg-layer" id="svg-02"></div>
+      </div>
+
+      <!-- PAGE 3: ANNOUNCEMENT -->
+      <div class="page" id="page-announcement">
+        <img class="bg" src="./images/03_ANNOUNCEMENT.jpg" alt="" />
+        <div class="overlay"></div>
+        <div class="svg-layer" id="svg-03"></div>
+      </div>
+
+      <!-- PAGE 4: LOCATION -->
+      <div class="page" id="page-location">
+        <img class="bg" src="./images/04_LOCATION.jpg" alt="" />
+        <div class="overlay"></div>
+        <div class="svg-layer" id="svg-04"></div>
+      </div>
+
+      <!-- PAGE 5: RSVP -->
+      <div class="page" id="page-rsvp">
+        <div class="rsvp-gold-bar"></div>
+        <div class="rsvp-content">
+          <h2 class="rsvp-heading" id="rsvp-heading">ARE YOU COMING?</h2>
+          <div class="rsvp-sep"></div>
+          <form id="rsvp-form" onsubmit="handleRSVP(event)">
+            <div class="form-row">
+              <label id="lbl-name">FULL NAME</label>
+              <input type="text" name="name" id="f-name" autocomplete="name" placeholder="—" required />
+            </div>
+            <div class="form-row">
+              <label id="lbl-email">EMAIL</label>
+              <input type="email" name="email" id="f-email" autocomplete="email" placeholder="—" required />
+            </div>
+            <div class="rsvp-sep"></div>
+            <div class="form-row">
+              <label id="lbl-attending">ATTENDING?</label>
+              <div class="attend-toggle">
+                <button type="button" class="attend-btn" id="btn-yes" onclick="setAttending('yes')">JOYFULLY ACCEPTS</button>
+                <button type="button" class="attend-btn" id="btn-no" onclick="setAttending('no')">REGRETFULLY DECLINES</button>
+              </div>
+              <input type="hidden" name="attending" id="f-attending" />
+            </div>
+            <div class="rsvp-sep"></div>
+            <div class="form-row">
+              <label id="lbl-celebration">WHICH CELEBRATION?</label>
+              <div class="event-opts">
+                <div class="event-opt" onclick="toggleEvent(this)">
+                  <input type="checkbox" name="events" value="Hungary" />
+                  <span id="opt-hungary">Hungary · 10 October 2026</span>
+                </div>
+                <div class="event-opt" onclick="toggleEvent(this)">
+                  <input type="checkbox" name="events" value="Sydney" />
+                  <span id="opt-sydney">Sydney · 14 November 2026</span>
+                </div>
+              </div>
+            </div>
+            <div class="rsvp-sep"></div>
+            <div class="form-row">
+              <label id="lbl-guests">GUESTS</label>
+              <div class="guest-btns">
+                <button type="button" class="guest-btn active" onclick="setGuests(1)">1</button>
+                <button type="button" class="guest-btn" onclick="setGuests(2)">2</button>
+                <button type="button" class="guest-btn" onclick="setGuests(3)">3</button>
+                <button type="button" class="guest-btn" onclick="setGuests(4)">4</button>
+              </div>
+              <input type="hidden" name="guests" id="f-guests" value="1" />
+            </div>
+            <div class="form-error" id="form-error">Please let us know if you can attend.</div>
+            <input type="hidden" name="_language" id="f-language" value="en" />
+            <button type="submit" class="submit-btn" id="btn-submit">KINDLY RSVP</button>
+          </form>
+          <p class="rsvp-footnote" id="rsvp-footnote">We'll be in touch with everything you need — accommodation, transport, and what to expect.</p>
+        </div>
+      </div>
+
+      <!-- PAGE 6: CONFIRMATION (post-submit only) -->
+      <div class="page" id="page-confirm">
+        <div class="confirm-title" id="confirm-title">Thank you</div>
+        <p class="confirm-text" id="confirm-text">We'll be in touch soon with all the details.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation dots (pages 1–5) -->
+  <div class="dots" id="dots">
+    <button class="dot active" onclick="goToPage(0)"></button>
+    <button class="dot" onclick="goToPage(1)"></button>
+    <button class="dot" onclick="goToPage(2)"></button>
+    <button class="dot" onclick="goToPage(3)"></button>
+    <button class="dot" onclick="goToPage(4)"></button>
+  </div>
+
+  <!-- Language switcher -->
+  <div class="lang-switch">
+    <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
+    <button class="lang-btn" onclick="setLanguage('hu')">HU</button>
+    <button class="lang-btn" onclick="setLanguage('ru')">RU</button>
+  </div>
+
+  <!-- Publish bar (localhost only) -->
+  <div class="publish-bar" id="publish-bar">
+    <button class="publish-btn" id="btn-publish" onclick="publish()">Publish</button>
+    <button class="publish-btn settings" onclick="showPATModal()">⚙</button>
+    <span class="publish-status" id="publish-status"></span>
+  </div>
+
+  <!-- PAT modal -->
+  <div class="publish-modal" id="pat-modal">
+    <div class="publish-modal-inner">
+      <h3>GitHub Token</h3>
+      <input type="password" id="pat-input" placeholder="github_pat_..." />
+      <div class="modal-btns">
+        <button class="save-btn" onclick="savePAT()">Save</button>
+        <button class="cancel-btn" onclick="closePATModal()">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── CONFIG ──
+    const FORM_URL = 'https://script.google.com/macros/s/AKfycbyrwJFm9uE3xdwfrqdQ0a9bQco1PeJ0ljpac53UOrNea-GLXzhTSeHkdM2VSY-Nf-We/exec';
+
+    const SVG_MAP = [
+      { el: 'svg-01', file: '01_cover.svg' },
+      { el: 'svg-02', file: '02_story.svg' },
+      { el: 'svg-03', file: '03_announcement.svg' },
+      { el: 'svg-04', file: '04_location.svg' },
+    ];
+
+    const RSVP_STRINGS = {
+      en: {
+        heading: 'ARE YOU COMING?',
+        lblName: 'FULL NAME', lblEmail: 'EMAIL', lblAttending: 'ATTENDING?',
+        btnYes: 'JOYFULLY ACCEPTS', btnNo: 'REGRETFULLY DECLINES',
+        lblCelebration: 'WHICH CELEBRATION?',
+        optHungary: 'Hungary · 10 October 2026', optSydney: 'Sydney · 14 November 2026',
+        lblGuests: 'GUESTS', submit: 'KINDLY RSVP',
+        footnote: "We'll be in touch with everything you need — accommodation, transport, and what to expect.",
+        confirmTitle: 'Thank you', confirmText: "We'll be in touch soon with all the details.",
+        error: 'Please let us know if you can attend.'
+      },
+      hu: {
+        heading: 'Jössz?',
+        lblName: 'TELJES NÉV', lblEmail: 'EMAIL', lblAttending: 'JÖSSZ?',
+        btnYes: 'PERSZEHOGY', btnNo: 'SAJNOS NEM :(',
+        lblCelebration: 'MELYIK ESKÜVŐ?',
+        optHungary: 'Magyarország · 2026. október 10.', optSydney: 'Sydney · 2026. november 14.',
+        lblGuests: 'VENDÉGEK', submit: 'KÜLDÉS',
+        footnote: 'Hamarosan felvesszük veled a kapcsolatot minden részlettel — szállás, közlekedés és mire számíts.',
+        confirmTitle: 'Köszönjük', confirmText: 'Hamarosan jelentkezünk minden részlettel.',
+        error: 'Kérjük jelezd, hogy tudsz-e jönni.'
+      },
+      ru: {
+        heading: 'Будете с нами?',
+        lblName: 'ПОЛНОЕ ИМЯ', lblEmail: 'ЭЛЕКТРОННАЯ ПОЧТА', lblAttending: 'ПРИСУТСТВИЕ',
+        btnYes: 'С радостью', btnNo: 'К сожалению, не смогу',
+        lblCelebration: 'КАКОЕ ТОРЖЕСТВО?',
+        optHungary: 'Венгрия · 10 октября 2026', optSydney: 'Сидней · 14 ноября 2026',
+        lblGuests: 'ГОСТИ', submit: 'ОТВЕТИТЬ',
+        footnote: 'Мы свяжемся с вами и расскажем всё, что нужно знать — проживание, транспорт и чего ожидать.',
+        confirmTitle: 'Спасибо', confirmText: 'Мы скоро свяжемся с вами со всеми деталями.',
+        error: 'Пожалуйста, сообщите, сможете ли вы прийти.'
       }
-    </style>
-  </head>
-  <body>
-    <h1>Coming Soon</h1>
-  </body>
+    };
+
+    let currentLang = 'en';
+    let currentPage = 0;
+    const pages = document.querySelectorAll('#scroller > .page');
+    const dots = document.querySelectorAll('.dot');
+    const scroller = document.getElementById('scroller');
+
+    // ── LANGUAGE ──
+    function setLanguage(lang) {
+      if (!RSVP_STRINGS[lang]) return;
+      currentLang = lang;
+
+      // Swap SVGs (fetch and inline for transparency)
+      for (const info of SVG_MAP) {
+        loadSVG(info.el, `./svg/${lang}/${info.file}`);
+      }
+
+      // Update RSVP strings
+      const s = RSVP_STRINGS[lang];
+      document.getElementById('rsvp-heading').textContent = s.heading;
+      document.getElementById('lbl-name').textContent = s.lblName;
+      document.getElementById('lbl-email').textContent = s.lblEmail;
+      document.getElementById('lbl-attending').textContent = s.lblAttending;
+      document.getElementById('btn-yes').textContent = s.btnYes;
+      document.getElementById('btn-no').textContent = s.btnNo;
+      document.getElementById('lbl-celebration').textContent = s.lblCelebration;
+      document.getElementById('opt-hungary').textContent = s.optHungary;
+      document.getElementById('opt-sydney').textContent = s.optSydney;
+      document.getElementById('lbl-guests').textContent = s.lblGuests;
+      document.getElementById('btn-submit').textContent = s.submit;
+      document.getElementById('rsvp-footnote').textContent = s.footnote;
+      document.getElementById('confirm-title').textContent = s.confirmTitle;
+      document.getElementById('confirm-text').textContent = s.confirmText;
+      document.getElementById('form-error').textContent = s.error;
+      document.getElementById('f-language').value = lang;
+
+      // Update lang button states
+      document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.textContent === lang.toUpperCase());
+      });
+
+      // Update URL
+      const url = new URL(window.location);
+      url.searchParams.set('lang', lang);
+      history.replaceState(null, '', url);
+    }
+
+    // ── NAVIGATION ──
+    function goToPage(i) {
+      pages[i].scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function updateDots() {
+      const scrollTop = scroller.scrollTop;
+      const pageHeight = scroller.clientHeight;
+      const i = Math.round(scrollTop / pageHeight);
+      if (i === currentPage) return;
+      currentPage = i;
+      dots.forEach((d, j) => d.classList.toggle('active', j === i));
+    }
+    scroller.addEventListener('scroll', updateDots, { passive: true });
+
+    // ── RSVP FORM (carried from previous version) ──
+    function setAttending(v) {
+      document.getElementById('f-attending').value = v;
+      document.getElementById('btn-yes').className = 'attend-btn' + (v === 'yes' ? ' active-yes' : '');
+      document.getElementById('btn-no').className  = 'attend-btn' + (v === 'no'  ? ' active-no'  : '');
+      document.getElementById('form-error').classList.remove('visible');
+    }
+
+    function toggleEvent(el) {
+      const cb = el.querySelector('input[type="checkbox"]');
+      cb.checked = !cb.checked;
+      el.classList.toggle('checked', cb.checked);
+    }
+
+    function setGuests(n) {
+      document.getElementById('f-guests').value = n;
+      document.querySelectorAll('.guest-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', i === n - 1);
+      });
+    }
+
+    async function handleRSVP(e) {
+      e.preventDefault();
+      if (!document.getElementById('f-attending').value) {
+        document.getElementById('form-error').classList.add('visible');
+        return;
+      }
+      const btn = e.target.querySelector('.submit-btn');
+      btn.disabled = true;
+      try {
+        const fd = new FormData(e.target);
+        await fetch(FORM_URL, { method: 'POST', body: fd, mode: 'no-cors' });
+      } catch (_) {}
+      document.getElementById('page-confirm').style.display = 'flex';
+      goToPage(5);
+    }
+
+    // ── SVG LOADER (inline for transparency) ──
+    async function loadSVG(elId, url) {
+      try {
+        const res = await fetch(url);
+        const text = await res.text();
+        const el = document.getElementById(elId);
+        el.innerHTML = text;
+        // Ensure the inlined SVG fills its container
+        const svg = el.querySelector('svg');
+        if (svg) {
+          svg.setAttribute('width', '100%');
+          svg.setAttribute('height', '100%');
+          svg.style.display = 'block';
+        }
+      } catch (_) {}
+    }
+
+    // ── PUBLISH (localhost only) ──
+    const IS_LOCAL = location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+    const REPO = 'martonstudio/wedding';
+    const PAT_KEY = 'wedding-publish-pat';
+
+    if (IS_LOCAL) {
+      document.getElementById('publish-bar').classList.add('visible');
+    }
+
+    function showPATModal() {
+      document.getElementById('pat-input').value = localStorage.getItem(PAT_KEY) || '';
+      document.getElementById('pat-modal').classList.add('visible');
+    }
+    function closePATModal() {
+      document.getElementById('pat-modal').classList.remove('visible');
+    }
+    function savePAT() {
+      const v = document.getElementById('pat-input').value.trim();
+      if (v) localStorage.setItem(PAT_KEY, v);
+      else localStorage.removeItem(PAT_KEY);
+      closePATModal();
+    }
+
+    function setPublishStatus(msg) {
+      document.getElementById('publish-status').textContent = msg;
+    }
+
+    async function pushFile(path, contentB64, headers) {
+      const api = `https://api.github.com/repos/${REPO}/contents/${path}`;
+      const getRes = await fetch(api, { headers });
+      if (!getRes.ok && getRes.status !== 404) throw new Error(`GET ${path}: ${getRes.status}`);
+      const existing = getRes.ok ? await getRes.json() : null;
+      const body = { message: `Update ${path}`, content: contentB64 };
+      if (existing?.sha) body.sha = existing.sha;
+      const putRes = await fetch(api, { method: 'PUT', headers, body: JSON.stringify(body) });
+      if (!putRes.ok) {
+        const err = await putRes.json().catch(() => ({}));
+        throw new Error(err.message || `PUT ${path}: ${putRes.status}`);
+      }
+    }
+
+    function textToB64(text) {
+      return btoa(unescape(encodeURIComponent(text)));
+    }
+
+    function arrayBufToB64(buf) {
+      let binary = '';
+      const bytes = new Uint8Array(buf);
+      for (let i = 0; i < bytes.length; i++) binary += String.fromCharCode(bytes[i]);
+      return btoa(binary);
+    }
+
+    async function publish() {
+      const pat = localStorage.getItem(PAT_KEY);
+      if (!pat) { showPATModal(); return; }
+
+      const btn = document.getElementById('btn-publish');
+      btn.disabled = true;
+      setPublishStatus('Publishing…');
+
+      const headers = {
+        'Authorization': `Bearer ${pat}`,
+        'Accept': 'application/vnd.github+json',
+        'X-GitHub-Api-Version': '2022-11-28',
+        'Content-Type': 'application/json'
+      };
+
+      // Content files only — build config (package.json, vite.config.js, deploy.yml) is pushed via git
+      const textFiles = ['index.html'];
+      const svgFiles = [];
+      for (const lang of ['en', 'hu', 'ru']) {
+        for (const f of ['01_cover.svg', '02_story.svg', '03_announcement.svg', '04_location.svg']) {
+          svgFiles.push(`public/svg/${lang}/${f}`);
+        }
+      }
+      const imageFiles = ['public/images/01_COVER.jpg', 'public/images/02_STORY.jpg', 'public/images/03_ANNOUNCEMENT.jpg', 'public/images/04_LOCATION.jpg'];
+
+      try {
+        let pushed = 0;
+        const total = textFiles.length + svgFiles.length + imageFiles.length;
+
+        // Push source files (via /_raw to avoid Vite HMR injection)
+        for (const path of textFiles) {
+          setPublishStatus(`Publishing ${pushed + 1}/${total}…`);
+          const res = await fetch(`/_raw/${path}`);
+          const text = await res.text();
+          await pushFile(path, textToB64(text), headers);
+          pushed++;
+        }
+
+        // Push SVGs (served from public/)
+        for (const path of svgFiles) {
+          setPublishStatus(`Publishing ${pushed + 1}/${total}…`);
+          const servePath = path.replace('public/', './');
+          const res = await fetch(servePath);
+          const text = await res.text();
+          await pushFile(path, textToB64(text), headers);
+          pushed++;
+        }
+
+        // Push images (binary)
+        for (const path of imageFiles) {
+          setPublishStatus(`Publishing ${pushed + 1}/${total}…`);
+          const servePath = path.replace('public/', './');
+          const res = await fetch(servePath);
+          const buf = await res.arrayBuffer();
+          await pushFile(path, arrayBufToB64(buf), headers);
+          pushed++;
+        }
+
+        setPublishStatus('Published — deploying (~1 min)');
+        setTimeout(() => setPublishStatus(''), 5000);
+      } catch (err) {
+        setPublishStatus(`Failed: ${err.message}`);
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    // ── INIT ──
+    const urlLang = new URLSearchParams(window.location.search).get('lang');
+    setLanguage(['en', 'hu', 'ru'].includes(urlLang) ? urlLang : 'en');
+  </script>
+</body>
 </html>

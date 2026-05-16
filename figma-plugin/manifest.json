@@ -1,0 +1,8 @@
+{
+  "name": "Wedding Invite — Push to Preview",
+  "id": "wedding-invite-push-to-preview",
+  "api": "1.0.0",
+  "main": "code.js",
+  "ui": "ui.html",
+  "editorType": ["figma"]
+}
