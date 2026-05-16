@@ -1,0 +1,46 @@
+{
+  "page1Label": "Esküvő",
+  "name1": "Szonja",
+  "name2": "Márton",
+  "dateShort": "2026. X. 10.",
+  "heroLocation": "Mád · Tokaji Borvidék",
+  "storyLabel": "A Történetünk",
+  "storyText": "Gondoljuk, már meséltünk róla, hogyan ismerkedtünk meg Sri Lankán, 2023 Karácsonykor, szóval nem kell kisregényt írnunk. Egy év, kilenc ország és három kontinenssel* később végül megállapodtunk Sydneyben, ahol azóta is boldogan élünk, most pedig...\n",
+  "announceLabel": "",
+  "eyebrow": "ÖSSZEHÁZASODUNK",
+  "locationIntro": "Ha eddig nem lett volna egyértelmú. És szeretnénk veled együtt megünnepelni. ",
+  "locationLabel": "",
+  "locationBody": "Hogy mindenki számára elérhető legyen az ünnep, két esküvőt szervezünk: egyet egy gyönyörű faluban Magyarország észak-keleti részén, egyet pedig Sydneyben. Mindkettőre szeretettel várunk — gyere el az egyikre, vagy akár mindkettőre.\n\n\n\n",
+  "hungaryLabel": "Magyarország",
+  "hungaryDate": "2026. október 10.",
+  "venueName": "Mád, Tokaji Borvidék",
+  "hungaryText": "Mád egy gyönyörű falu a tokaji borvidéken. Rengeteg időt töltöttünk itt, és szeretnénk, ha te is legalápp pár napra el tudnál jönni. Az esküvő előtti és utáni napokban mindenféle programokat szervezünk, borkóstolás, kirándulás, szüret, ami belefér. ",
+  "sydneyLabel": "Sydney",
+  "sydneyDate": "2026. november",
+  "sydneyVenue": "Sydney, Ausztrália",
+  "sydneyText": "A Sydney esküvő egy domboldalon, egy tengerparton vagy egy kocsmában lesz, még nem találtuk ki.",
+  "locationNote": "Várunk szeretettel az egyikre — vagy mindkettőre",
+  "rsvpLabel": "Csatlakozz Hozzánk",
+  "rsvpTitle": "Jössz?",
+  "btnYes": "PERSZEHOGY",
+  "btnNo": "SAJNOS NEM :(",
+  "btnNavRSVP": "Válasz küldése",
+  "thankYouLabel": "Találkozunk",
+  "thankYouTitle": "Köszönjük, hogy velünk ünnepelsz",
+  "thankYouText": "Nagyon örülünk, hogy csatlakozol hozzánk. Hamarosan küldünk minden szükséges információt — szállás, megközelítés, program.",
+  "storyText2": "*vagy 2 kontinens, attól függ hogy definiálod",
+  "_styles": {
+    "storyText2": {
+      "size": ".7"
+    },
+    "eyebrow": {
+      "size": "2.8"
+    },
+    "locationNote": {
+      "size": "1"
+    },
+    "page1Label": {
+      "weight": "700"
+    }
+  }
+}

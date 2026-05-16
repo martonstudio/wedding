@@ -1,0 +1,48 @@
+{
+  "formUrl": "https://script.google.com/macros/s/AKfycbyrwJFm9uE3xdwfrqdQ0a9bQco1PeJ0ljpac53UOrNea-GLXzhTSeHkdM2VSY-Nf-We/exec",
+  "accentColor": "#ffffff",
+  "bgColor": "#111111",
+  "typography": {
+    "fontFamily": "Lato",
+    "headline": {
+      "size": "4.3",
+      "weight": "700"
+    },
+    "accent": {
+      "size": "2",
+      "weight": "700"
+    },
+    "body": {
+      "size": "1.2",
+      "weight": "400",
+      "lineHeight": "1"
+    }
+  },
+  "layout": {
+    "cover": {
+      "anchor": "center",
+      "paddingTop": "3",
+      "paddingBottom": "3.5"
+    },
+    "story": {
+      "anchor": "bottom",
+      "paddingTop": "3",
+      "paddingBottom": "2.5"
+    },
+    "announce": {
+      "anchor": "bottom",
+      "paddingTop": "3",
+      "paddingBottom": "2.5"
+    },
+    "locations": {
+      "anchor": "center",
+      "paddingTop": "3",
+      "paddingBottom": "2.5"
+    },
+    "rsvp": {
+      "anchor": "center",
+      "paddingTop": "5",
+      "paddingBottom": "2.5"
+    }
+  }
+}
